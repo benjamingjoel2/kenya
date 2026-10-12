@@ -57,7 +57,7 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
       </nav>
       <div className="container-x flex flex-col gap-4 border-t border-white/10 py-6">
         <div className="flex items-center gap-3">
-          <CurrencySwitcher tone="light" />
+          <CurrencySwitcher tone="light" placement="up" />
           <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-cream/80">
             <WhatsAppIcon className="h-5 w-5" /> {site.contact.whatsappDisplay}
           </a>

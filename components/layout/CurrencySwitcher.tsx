@@ -6,7 +6,7 @@ import { currencies, type CurrencyCode } from "@/config/site";
 import { useCurrency } from "./CurrencyProvider";
 import { cn } from "@/lib/utils";
 
-export function CurrencySwitcher({ tone = "dark", className }: { tone?: "dark" | "light"; className?: string }) {
+export function CurrencySwitcher({ tone = "dark", className, placement = "down" }: { tone?: "dark" | "light"; className?: string; placement?: "down" | "up" }) {
   const { currency, setCurrency } = useCurrency();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -52,11 +52,11 @@ export function CurrencySwitcher({ tone = "dark", className }: { tone?: "dark" |
             id={listId}
             role="listbox"
             aria-label="Select currency"
-            initial={{ opacity: 0, y: -6 }}
+            initial={{ opacity: 0, y: placement === "up" ? 6 : -6 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
+            exit={{ opacity: 0, y: placement === "up" ? 6 : -6 }}
             transition={{ duration: 0.18 }}
-            className="absolute right-0 z-50 mt-2 w-52 overflow-hidden rounded-md border border-line bg-cream py-1 text-charcoal shadow-xl"
+            className={cn("absolute z-50 w-52", placement === "up" ? "bottom-full left-0 mb-2" : "right-0 mt-2", " overflow-hidden rounded-md border border-line bg-cream py-1 text-charcoal shadow-xl")}
           >
             {(Object.keys(currencies) as CurrencyCode[]).map((code) => (
               <li key={code} role="option" aria-selected={code === currency}>
