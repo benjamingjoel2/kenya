@@ -85,7 +85,7 @@ export function Newsletter() {
                 {error ? (
                   <p id={`${id}-err`} className="text-sm text-[#ffb4a8]">{error}</p>
                 ) : (
-                  <p id={`${id}-hint`} className="text-sm text-cream/60">We’ll only use your email to send the guide and our occasional letter. Unsubscribe anytime.</p>
+                  <p id={`${id}-hint`} className="text-sm text-cream/85">We’ll only use your email to send the guide and our occasional letter. Unsubscribe anytime.</p>
                 )}
               </motion.form>
             )}

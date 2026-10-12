@@ -29,6 +29,8 @@
   --text-lead: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem);
   --text-lead--line-height: 1.55;
 
+  --color-gold-pale: #efd39b; /* AA on acacia & charcoal */
+
   --radius-card: 4px;
   --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -69,6 +71,40 @@
     html {
       scroll-behavior: auto;
     }
+  }
+}
+
+/* Above-the-fold entrances run in CSS so they don't wait for hydration (better LCP). */
+@keyframes sn-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+@keyframes sn-rise {
+  from {
+    transform: translateY(110%);
+  }
+}
+@keyframes sn-zoom-out {
+  from {
+    transform: scale(1.12);
+  }
+}
+@utility animate-fade-up {
+  animation: sn-fade-up 0.9s var(--ease-premium) both;
+}
+@utility animate-rise {
+  animation: sn-rise 1.1s var(--ease-premium) both;
+}
+@utility animate-zoom-out {
+  animation: sn-zoom-out 2.4s var(--ease-premium) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-rise,
+  .animate-zoom-out {
+    animation: none;
   }
 }
 

@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Safari Njema: marketing site
 
-## Getting Started
+*"Safari njema"* is Swahili for "have a good journey". This is the marketing site for Safari Njema: tailor-made Kenya safaris and beach escapes, planned by one dedicated specialist.
 
-First, run the development server:
+Built with **Next.js 15 (App Router) · TypeScript · Tailwind CSS v4 · Framer Motion · MDX**.
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev          # http://localhost:3000
+npm run build && npm start
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Copy `.env.example` to `.env.local`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | Canonical URL for metadata, sitemap and OG tags. |
+| `NEXT_PUBLIC_IMAGE_PLACEHOLDERS` | Set to `1` to use the local SVG placeholders in `public/placeholders/` instead of Unsplash photos (handy offline or in CI). |
 
-## Learn More
+## Where things live
 
-To learn more about Next.js, take a look at the following resources:
+```
+config/site.ts        Brand name, contact details, WhatsApp number, socials, nav, currencies + exchange rates
+data/                 Typed content: destinations, experiences, safaris, stays, testimonials, faqs, planner routes
+data/images.ts        Central image registry (one line per photo)
+content/blog/*.mdx    Journal posts (frontmatter + Markdown)
+app/                  Routes (pages generated from /data via generateStaticParams)
+components/           layout/ · ui/ · cards/ · sections/ · planner/
+app/api/*             plan, newsletter, contact (log payloads; TODOs for email/CRM)
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Every page is generated from `/data` and `/content`, so moving to a CMS means swapping those modules for API calls. The types in `data/types.ts` are the contract.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Before launch: placeholders to replace
 
-## Deploy on Vercel
+- **`config/site.ts`**: `[EMAIL]`, `[NUMBER]` (WhatsApp, digits only, international format), phone, address, socials, stats, membership badges.
+- **Exchange rates**: static and indicative in `config/site.ts`. TODO: fetch live rates.
+- **Photos**: every image is an Unsplash placeholder in `data/images.ts`. The photo IDs were not checked, so swap any that fail to load, and ideally use your own photography.
+- **Logo**: a text and SVG placeholder in `components/layout/Logo.tsx`.
+- **Testimonials**: all are marked as placeholders (`data/testimonials.ts`) and labelled on the site.
+- **Stays**: fictional sample properties (`data/stays.ts`).
+- **Prices, park fees, permit costs and FAQ facts** (eTA, KWS cashless payments, health): review them all with your team.
+- **Legal pages** (`/privacy`, `/terms`, `/cookies`) are stubs.
+- **Map**: `components/sections/MapPlaceholder.tsx` is a stylised placeholder.
+- **API routes**: `app/api/plan`, `newsletter` and `contact` currently `console.log` the payload. Wire them up to email/CRM (see the TODOs).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Features
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Currency switcher (USD, EUR, GBP, AUD, CAD, KES). All prices are stored in base USD and converted client-side by `<Price usd={…} />`. The choice is remembered.
+- Trip planner at `/plan-your-safari`, also available as a modal from any "Start planning" button:
+  - five validated steps (react-hook-form + zod)
+  - progress saved in localStorage
+  - submits to `/api/plan`
+- Floating WhatsApp button, newsletter ("The Kenya Safari Guide") with a success state, FAQ accordion.
+- SEO:
+  - per-page metadata and canonical URLs
+  - JSON-LD (TravelAgency, TouristTrip, FAQPage, BlogPosting)
+  - `sitemap.xml`, `robots.txt` and a generated OG image
+- Accessibility:
+  - skip link, landmarks and visible focus states
+  - focus-trapped dialogs
+  - labelled fields with announced errors
+  - `prefers-reduced-motion` support
+
+Safari njema.

@@ -14,7 +14,7 @@ const items = [
 export function TrustRow() {
   return (
     <section aria-label="Why travel with Safari Njema" className="border-b border-line bg-cream">
-      <RevealGroup className="container-x grid grid-cols-1 gap-x-8 gap-y-10 py-16 sm:grid-cols-2 lg:grid-cols-6 lg:py-20" stagger={0.06}>
+      <RevealGroup className="container-x grid grid-cols-2 gap-x-6 gap-y-10 py-16 sm:grid-cols-3 lg:grid-cols-6 lg:gap-x-8 lg:py-20" stagger={0.06}>
         {items.map(({ icon: Icon, title, text }) => (
           <RevealItem key={title} className="flex flex-col gap-3">
             <Icon className="h-7 w-7 text-gold-dark" />

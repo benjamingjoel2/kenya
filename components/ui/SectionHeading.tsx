@@ -4,7 +4,7 @@ import { BeadDivider } from "./BeadDivider";
 
 export function Eyebrow({ children, tone = "dark", className }: { children: React.ReactNode; tone?: "dark" | "light"; className?: string }) {
   return (
-    <p className={cn("eyebrow flex items-center gap-3", tone === "light" ? "text-gold-light" : "text-gold-dark", className)}>
+    <p className={cn("eyebrow flex items-center gap-3", tone === "light" ? "text-gold-pale" : "text-gold-dark", className)}>
       {children}
     </p>
   );
