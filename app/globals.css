@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+/* ---------- Design tokens ---------- */
+@theme {
+  --color-gold: #c8963e;
+  --color-gold-light: #e2bd76;
+  --color-gold-dark: #8a6420; /* AA on off-white */
+  --color-acacia: #3e5b3a;
+  --color-acacia-dark: #2b4128;
+  --color-shuka: #b4342a;
+  --color-charcoal: #1e1c1a;
+  --color-ink: #2c2926;
+  --color-stone: #6b645b;
+  --color-sand: #e9dfcc;
+  --color-cream: #f6f1e8;
+  --color-line: #ddd3c2;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
+
+  --text-display: clamp(2.75rem, 1.6rem + 5.2vw, 7rem);
+  --text-display--line-height: 0.98;
+  --text-h1: clamp(2.5rem, 1.7rem + 3.6vw, 5rem);
+  --text-h1--line-height: 1.02;
+  --text-h2: clamp(2.1rem, 1.5rem + 2.4vw, 4rem);
+  --text-h2--line-height: 1.06;
+  --text-h3: clamp(1.4rem, 1.2rem + 0.8vw, 2rem);
+  --text-h3--line-height: 1.15;
+  --text-lead: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem);
+  --text-lead--line-height: 1.55;
+
+  --radius-card: 4px;
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--color-charcoal);
+    text-wrap: balance;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+  ::selection {
+    background: var(--color-gold-light);
+    color: var(--color-charcoal);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@utility container-x {
+  width: 100%;
+  max-width: 1320px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (width >= 48rem) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility section-y {
+  padding-block: 5.5rem;
+  @media (width >= 64rem) {
+    padding-block: 8.5rem;
+  }
+}
+
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ---------- Long-form (MDX / rich text) ---------- */
+.prose-safari {
+  max-width: 68ch;
+  font-size: 1.125rem;
+  line-height: 1.8;
+}
+.prose-safari > * + * {
+  margin-top: 1.25em;
+}
+.prose-safari h2 {
+  font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem);
+  line-height: 1.15;
+  margin-top: 2.2em;
+}
+.prose-safari h3 {
+  font-size: 1.5rem;
+  line-height: 1.25;
+  margin-top: 1.8em;
+}
+.prose-safari a {
+  color: var(--color-acacia);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-safari ul {
+  list-style: none;
+  padding-left: 0;
+}
+.prose-safari ul li {
+  position: relative;
+  padding-left: 1.5em;
+}
+.prose-safari ul li + li {
+  margin-top: 0.5em;
+}
+.prose-safari ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.75em;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 999px;
+  background: var(--color-gold);
+}
+.prose-safari blockquote {
+  border-left: 2px solid var(--color-gold);
+  padding-left: 1.25em;
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  line-height: 1.45;
+  color: var(--color-charcoal);
+}
+.prose-safari strong {
+  color: var(--color-charcoal);
+  font-weight: 600;
+}
