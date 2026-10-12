@@ -72,27 +72,27 @@ export default async function DestinationPage({ params }: Props) {
 
       <div className="border-b border-line bg-cream">
         <dl className="container-x grid gap-6 py-8 md:grid-cols-3">
-          <div className="flex gap-3">
-            <SunIcon className="mt-0.5 h-5 w-5 shrink-0 text-gold-dark" />
-            <div>
-              <dt className="eyebrow text-stone">Best months</dt>
+          <div>
+              <dt className="eyebrow flex items-center gap-2 text-stone">
+                <SunIcon className="h-5 w-5 shrink-0 text-gold-dark" />
+                Best months
+              </dt>
               <dd className="mt-2 text-charcoal">{monthRanges(bestMonths) || "Year-round"}</dd>
             </div>
-          </div>
-          <div className="flex gap-3">
-            <PlaneIcon className="mt-0.5 h-5 w-5 shrink-0 text-gold-dark" />
-            <div>
-              <dt className="eyebrow text-stone">Getting there</dt>
+          <div>
+              <dt className="eyebrow flex items-center gap-2 text-stone">
+                <PlaneIcon className="h-5 w-5 shrink-0 text-gold-dark" />
+                Getting there
+              </dt>
               <dd className="mt-2 text-charcoal">{d.gettingThere}</dd>
             </div>
-          </div>
-          <div className="flex gap-3">
-            <PinIcon className="mt-0.5 h-5 w-5 shrink-0 text-gold-dark" />
-            <div>
-              <dt className="eyebrow text-stone">Pairs well with</dt>
+          <div>
+              <dt className="eyebrow flex items-center gap-2 text-stone">
+                <PinIcon className="h-5 w-5 shrink-0 text-gold-dark" />
+                Pairs well with
+              </dt>
               <dd className="mt-2 text-charcoal">{nearby.slice(0, 3).map((n) => n.name).join(", ")}</dd>
             </div>
-          </div>
         </dl>
       </div>
 

@@ -50,7 +50,7 @@ export function Footer() {
                 </a>
               </li>
             </ul>
-            <p className="mt-6 text-sm text-cream/50">{site.contact.address}</p>
+            <p className="mt-6 text-sm text-cream/65">{site.contact.address}</p>
           </div>
 
           <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:col-span-7">
@@ -74,7 +74,7 @@ export function Footer() {
 
         <div className="mt-20 flex flex-col gap-6 border-t border-white/10 pt-10 md:flex-row md:items-center md:justify-between">
           <div>
-            <p className="eyebrow mb-4 text-cream/50">Memberships &amp; partners</p>
+            <p className="eyebrow mb-4 text-cream/65">Memberships &amp; partners</p>
             <ul className="flex flex-wrap gap-3">
               {site.memberships.map((m) => (
                 <li
@@ -91,7 +91,7 @@ export function Footer() {
           <p className="font-serif text-5xl italic text-gold md:text-7xl">{site.signOff}</p>
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-8 text-sm text-cream/50 md:flex-row md:items-center md:justify-between">
+        <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-8 text-sm text-cream/65 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-4">
             <BeadDivider className="w-16" />
             <p>

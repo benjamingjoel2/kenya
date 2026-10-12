@@ -50,7 +50,7 @@ export default function ConservationPage() {
       <ParallaxBand image={img("rhino")}>
         <div className="container-x flex min-h-[70svh] items-center py-28">
           <Reveal className="max-w-3xl">
-            <p className="eyebrow text-gold-light">Rhino country</p>
+            <p className="eyebrow text-gold-pale">Rhino country</p>
             <p className="mt-6 font-serif text-[clamp(1.75rem,1.2rem+2vw,3rem)] leading-tight text-white">
               Laikipia and Lewa are home to some of Kenya’s most important black and white rhino populations. Every guest night in
               these sanctuaries helps fund the rangers who protect them.

@@ -8,7 +8,7 @@ export function MigrationBand() {
     <ParallaxBand image={img("migration-crossing")}>
       <div className="container-x flex min-h-[80svh] flex-col items-center justify-center py-28 text-center">
         <Reveal>
-          <p className="eyebrow text-gold-light">July – October · Masai Mara</p>
+          <p className="eyebrow text-gold-pale">July – October · Masai Mara</p>
           <h2 className="mx-auto mt-6 max-w-4xl text-h1 text-white">
             Two million hooves, one river, and a front-row seat you will never forget.
           </h2>

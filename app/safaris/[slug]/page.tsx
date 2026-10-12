@@ -66,28 +66,42 @@ export default async function SafariPage({ params }: Props) {
             <p className="font-serif text-[clamp(1.4rem,1.1rem+1vw,2rem)] leading-snug text-charcoal">{s.summary}</p>
           </Reveal>
           <dl className="mt-10 grid gap-6 border-y border-line py-8 sm:grid-cols-3">
-            <div className="flex gap-3">
-              <ClockIcon className="h-5 w-5 shrink-0 text-gold-dark" />
-              <div>
-                <dt className="eyebrow text-stone">Duration</dt>
-                <dd className="mt-2">{s.nights} nights / {s.nights + 1} days</dd>
-              </div>
+            <div>
+              <dt className="eyebrow flex items-center gap-2 text-stone">
+                <ClockIcon className="h-5 w-5 shrink-0 text-gold-dark" />
+                Duration
+              </dt>
+              <dd className="mt-2">{s.nights} nights / {s.nights + 1} days</dd>
             </div>
-            <div className="flex gap-3">
-              <PinIcon className="h-5 w-5 shrink-0 text-gold-dark" />
-              <div>
-                <dt className="eyebrow text-stone">Regions</dt>
-                <dd className="mt-2">{s.regions.join(", ")}</dd>
-              </div>
+            <div>
+              <dt className="eyebrow flex items-center gap-2 text-stone">
+                <PinIcon className="h-5 w-5 shrink-0 text-gold-dark" />
+                Regions
+              </dt>
+              <dd className="mt-2">{s.regions.join(", ")}</dd>
             </div>
-            <div className="flex gap-3">
-              <SunIcon className="h-5 w-5 shrink-0 text-gold-dark" />
-              <div>
-                <dt className="eyebrow text-stone">Best time</dt>
-                <dd className="mt-2">{s.bestTime}</dd>
-              </div>
+            <div>
+              <dt className="eyebrow flex items-center gap-2 text-stone">
+                <SunIcon className="h-5 w-5 shrink-0 text-gold-dark" />
+                Best time
+              </dt>
+              <dd className="mt-2">{s.bestTime}</dd>
             </div>
           </dl>
+          <div className="mt-8 flex flex-wrap items-end justify-between gap-4 rounded-[var(--radius-card)] bg-charcoal p-6 text-cream lg:hidden">
+            <div>
+              <p className="text-sm text-cream/70">From</p>
+              <p className="font-serif text-3xl text-white">
+                <Price usd={s.priceFromUsd} /> <span className="font-sans text-sm text-cream/70">per person</span>
+              </p>
+              <p className="mt-1 text-xs text-cream/70">
+                ≈ <Price usd={s.priceFromUsd * 2} /> for two · international flights excluded
+              </p>
+            </div>
+            <StartPlanningButton variant="gold" arrow className="px-5 py-3">
+              Enquire
+            </StartPlanningButton>
+          </div>
           <div className="mt-10">
             <h2 className="eyebrow font-sans text-gold-dark">Highlights</h2>
             <TickList items={s.highlights} className="mt-5 text-lg" />

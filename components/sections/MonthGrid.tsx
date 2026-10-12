@@ -32,7 +32,7 @@ export function MonthGrid({ months, note }: { months: MonthStatus[]; note?: stri
           ))}
       </ul>
       {note && <p className="mt-5 max-w-3xl text-stone">{note}</p>}
-      <p className="mt-3 text-xs text-stone/80">
+      <p className="mt-3 text-xs text-stone">
         Long rains usually fall around April–May and short rains around November; patterns vary year to year.
       </p>
     </div>

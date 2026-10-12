@@ -10,7 +10,7 @@ export function FinalCta({ title = "Plan your safari", text }: { title?: string;
     <ParallaxBand image={img("giraffe-sunset")}>
       <div className="container-x flex min-h-[70svh] flex-col justify-center py-28">
         <Reveal className="max-w-3xl">
-          <p className="eyebrow text-gold-light">Your journey starts with a conversation</p>
+          <p className="eyebrow text-gold-pale">Your journey starts with a conversation</p>
           <h2 className="mt-6 text-display text-white">{title}</h2>
           <p className="mt-6 max-w-xl text-lead text-white/85">
             {text ??

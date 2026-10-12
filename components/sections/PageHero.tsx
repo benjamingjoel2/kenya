@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Img } from "@/data/types";
-import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
 
 export type Crumb = { label: string; href?: string };
@@ -49,12 +48,12 @@ export function PageHero({
             </ol>
           </nav>
         )}
-        <Reveal>
-          {eyebrow && <p className="eyebrow text-gold-light">{eyebrow}</p>}
+        <div className="animate-fade-up [animation-delay:100ms]">
+          {eyebrow && <p className="eyebrow text-gold-pale">{eyebrow}</p>}
           <h1 className="mt-5 max-w-5xl text-h1 text-white">{title}</h1>
           {intro && <p className="mt-6 max-w-2xl text-lead text-white/85">{intro}</p>}
           {children}
-        </Reveal>
+        </div>
       </div>
     </section>
   );
