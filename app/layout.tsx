@@ -5,7 +5,6 @@ import { site } from "@/config/site";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFab } from "@/components/layout/WhatsAppFab";
-import { CurrencyProvider } from "@/components/layout/CurrencyProvider";
 import { PlannerProvider } from "@/components/planner/PlannerProvider";
 import { MotionProvider } from "@/components/layout/MotionProvider";
 
@@ -32,14 +31,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           Skip to content
         </a>
         <MotionProvider>
-          <CurrencyProvider>
             <PlannerProvider>
               <Header />
               <main id="main">{children}</main>
               <Footer />
               <WhatsAppFab />
             </PlannerProvider>
-          </CurrencyProvider>
         </MotionProvider>
       </body>
     </html>

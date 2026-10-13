@@ -12,12 +12,14 @@ export function ParallaxBand({ image, children, className }: { image: Img; child
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
   return (
-    <section ref={ref} className={cn("relative isolate overflow-hidden bg-charcoal text-white", className)}>
-      <motion.div style={{ y }} className="absolute -inset-y-[14%] inset-x-0 -z-10">
-        <Image src={image.src} alt={image.alt} fill sizes="100vw" className="object-cover" />
-        <div aria-hidden className="absolute inset-0 bg-black/45" />
-      </motion.div>
-      {children}
+    <section ref={ref} className="px-2 md:px-4">
+      <div className={cn("relative isolate overflow-hidden rounded-[var(--radius-card)] bg-charcoal text-white", className)}>
+        <motion.div style={{ y }} className="absolute -inset-y-[14%] inset-x-0 -z-10">
+          <Image src={image.src} alt={image.alt} fill sizes="100vw" className="object-cover" />
+          <div aria-hidden className="absolute inset-0 bg-black/45" />
+        </motion.div>
+        {children}
+      </div>
     </section>
   );
 }

@@ -6,7 +6,6 @@ import { buildMetadata } from "@/lib/seo";
 import { DetailTemplate, Fact, IconList } from "@/components/sections/DetailTemplate";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { Price } from "@/components/ui/Price";
 import { ButtonLink } from "@/components/ui/Button";
 import { StartPlanningButton } from "@/components/planner/StartPlanningButton";
 import { SafariRow } from "@/components/cards/SafariRow";
@@ -40,18 +39,15 @@ export default async function StayPage({ params }: Props) {
         title={
           <>
             {s.name}
-            <span className="block text-stone">{s.location}</span>
+            <span className="mt-2 block text-[0.55em] leading-[1.1] text-stone">{s.location}</span>
           </>
         }
         photos={[s.hero, ...s.gallery]}
         sidebar={{
           head: (
             <div>
-              <p className="text-lead text-stone">from</p>
-              <p className="text-h4 text-charcoal">
-                <Price usd={s.priceFromUsd} />
-              </p>
-              <p className="text-sm text-stone">per person · night</p>
+              <p className="text-h4 text-charcoal">{s.name}</p>
+              <p className="mt-2 text-sm text-stone">Available as part of a tailor-made journey. Ask your specialist about dates and availability.</p>
             </div>
           ),
           facts: (
@@ -111,7 +107,7 @@ export default async function StayPage({ params }: Props) {
       <section className="section-y">
         <div className="container-x">
           <SectionHeading eyebrow="More stays" title="You might also love" />
-          <RevealGroup className="mt-14 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+          <RevealGroup className="mt-14 grid grid-cols-2 gap-2 lg:grid-cols-4">
             {others.map((x) => (
               <RevealItem key={x.slug}>
                 <StayPersonCard slug={x.slug} />

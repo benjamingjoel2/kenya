@@ -23,7 +23,7 @@ export function Accordion({ items, className }: { items: AccordionItem[]; classN
                 aria-expanded={isOpen}
                 aria-controls={`${id}-p-${i}`}
                 onClick={() => setOpen(isOpen ? null : i)}
-                className="flex w-full items-center justify-between gap-6 py-6 text-left font-serif text-xl text-charcoal md:text-2xl"
+                className="flex w-full items-center justify-between gap-6 py-6 text-left text-lg font-medium tracking-[-0.01em] text-charcoal md:text-xl"
               >
                 {item.q}
                 <PlusIcon className={cn("h-5 w-5 shrink-0 transition-transform duration-300", isOpen && "rotate-45")} />

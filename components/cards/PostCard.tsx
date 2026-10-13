@@ -5,7 +5,7 @@ import { formatDate } from "@/lib/utils";
 
 export function PostCard({ post, priority }: { post: PostMeta; priority?: boolean }) {
   return (
-    <Link href={`/blog/${post.slug}`} className="group flex flex-col rounded-[var(--radius-card)] bg-paper p-2 pb-6">
+    <Link href={`/blog/${post.slug}`} className="group flex h-full flex-col rounded-[var(--radius-card)] bg-paper p-2 pb-6">
       <CardImage image={post.cover} sizes="(min-width: 1024px) 33vw, 100vw" className="aspect-[3/2]" priority={priority} />
       <p className="mt-5 px-3 text-sm text-stone">
         <time dateTime={post.date}>{formatDate(post.date)}</time> · {post.readingTime}

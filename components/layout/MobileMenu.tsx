@@ -5,7 +5,6 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { nav, site, whatsappHref } from "@/config/site";
 import { Logo } from "./Logo";
-import { CurrencySwitcher } from "./CurrencySwitcher";
 import { WhatsAppIcon } from "@/components/ui/Icons";
 import { StartPlanningButton } from "@/components/planner/StartPlanningButton";
 import { useFocusTrap } from "@/lib/useFocusTrap";
@@ -60,7 +59,6 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
       </nav>
       <div className="container-x flex flex-col gap-4 py-6">
         <div className="flex items-center justify-between gap-3">
-          <CurrencySwitcher placement="up" />
           <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-stone">
             <WhatsAppIcon className="h-5 w-5" /> {site.contact.whatsappDisplay}
           </a>

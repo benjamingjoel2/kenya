@@ -25,7 +25,7 @@ export function DetailTemplate({
   title: React.ReactNode;
   photos: Img[];
   sections: DetailSection[];
-  /** Top of the sticky card (price, facts); jump links and CTA are added below it. */
+  /** Top of the sticky card (heading, facts); jump links and CTA are added below it. */
   sidebar: { head: React.ReactNode; facts?: React.ReactNode; cta: React.ReactNode };
 }) {
   const four = [...photos, ...photos].slice(0, 4);
@@ -40,7 +40,7 @@ export function DetailTemplate({
           </div>
           <div className="animate-fade-up mt-12 grid grid-cols-2 gap-2 [animation-delay:180ms] md:grid-cols-4">
             {four.map((p, i) => (
-              <div key={`${p.src}-${i}`} className={cn("relative overflow-hidden rounded-[var(--radius-card)] bg-sand", i === 0 ? "col-span-2 aspect-[4/3] md:col-span-1 md:aspect-[3/4]" : "aspect-[3/4]")}>
+              <div key={`${p.src}-${i}`} className={cn("relative overflow-hidden rounded-[var(--radius-card)] bg-sand", i === 0 ? "col-span-2 aspect-[4/3] md:col-span-1 md:aspect-[3/4]" : "aspect-[3/4]", i === 3 && "max-md:hidden")}>
                 <Image src={p.src} alt={p.alt} fill priority={i < 2} sizes="(min-width: 768px) 25vw, 50vw" className="object-cover" />
               </div>
             ))}
@@ -54,17 +54,17 @@ export function DetailTemplate({
             {sections.map((s, i) => (
               <section key={s.id} id={s.id} className={cn("scroll-mt-28", i > 0 && "mt-12 border-t border-line pt-12")}>
                 <Reveal>
-                  <h2 className="text-h4">{s.title}</h2>
-                  <div className="mt-6">{s.content}</div>
+                  <h2 className="max-w-[52rem] text-h4">{s.title}</h2>
+                  <div className="mt-6 max-w-[52rem]">{s.content}</div>
                 </Reveal>
               </section>
             ))}
           </div>
-          <aside className="lg:col-span-4">
+          <aside className="order-first lg:order-none lg:col-span-4">
             <div className="flex flex-col gap-6 rounded-[var(--radius-card)] bg-paper p-6 lg:sticky lg:top-24">
               {sidebar.head}
               {sidebar.facts && <div className="flex flex-col gap-3 text-sm text-charcoal">{sidebar.facts}</div>}
-              <div className="border-t border-line pt-6">
+              <div className="hidden border-t border-line pt-6 lg:block">
                 <SectionNav items={sections.map((s) => ({ id: s.id, label: s.label }))} />
               </div>
               <div className="flex flex-col gap-2">{sidebar.cta}</div>

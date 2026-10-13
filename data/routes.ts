@@ -16,10 +16,10 @@ export const plannerRoutes: PlannerRoute[] = [
 ];
 
 export const budgetTiers = [
-  { id: "value-luxury", name: "Value luxury", range: "approx. $450–700", note: "per person per day", text: "Comfortable, characterful camps with excellent guiding, often mixing road and air travel." },
-  { id: "premium", name: "Premium", range: "approx. $700–1,200", note: "per person per day", text: "Private conservancies, smaller camps and light-aircraft flights between parks." },
-  { id: "ultra", name: "Ultra luxury", range: "approx. $1,200+", note: "per person per day", text: "The finest camps and villas, private vehicles and exclusive-use options." },
-  { id: "not-sure", name: "Not sure yet", range: "", note: "", text: "Happy to see a few options. Your specialist will explain the trade-offs." },
+  { id: "value-luxury", name: "Value luxury", text: "Comfortable, characterful camps with excellent guiding, often mixing road and air travel." },
+  { id: "premium", name: "Premium", text: "Private conservancies, smaller camps and light-aircraft flights between parks." },
+  { id: "ultra", name: "Ultra luxury", text: "The finest camps and villas, private vehicles and exclusive-use options." },
+  { id: "not-sure", name: "Not sure yet", text: "Happy to see a few options. Your specialist will explain the trade-offs." },
 ] as const;
 
 export const addOns = [

@@ -1,11 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 520" preserveAspectRatio="xMidYMax slice">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 520" preserveAspectRatio="none">
   <defs>
     <linearGradient id="f" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#2a1a10"/>
+      <stop offset=".55" stop-color="#140c07"/>
       <stop offset="1" stop-color="#140c07"/>
     </linearGradient>
   </defs>
-  <!-- Foreground ridge + acacias: sits in front of the giant headline word. -->
+  <!-- Foreground ridge + acacias: sits in front of the giant headline word.
+       Bottom edge is solid #140c07 so it blends into the hero's copy band. -->
   <path fill="url(#f)" d="M0 330 C 120 300 220 318 330 296 C 470 268 560 300 700 286 C 860 270 960 230 1100 246 C 1240 262 1330 300 1460 286 C 1530 279 1570 270 1600 266 V520 H0Z"/>
   <g fill="#140c07">
     <rect x="236" y="190" width="9" height="120"/>

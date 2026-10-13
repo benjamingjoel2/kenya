@@ -34,8 +34,8 @@ export function Breadcrumbs({ crumbs }: { crumbs: Crumb[] }) {
 }
 
 /**
- * Inner-page intro (reference page head): breadcrumbs, eyebrow + large title in
- * the 3/9 head grid, intro copy, then a wide rounded photo.
+ * Inner-page intro: breadcrumbs, eyebrow, large title and intro (left-aligned),
+ * then an optional wide rounded photo.
  */
 export function PageHero({
   image,
@@ -58,13 +58,11 @@ export function PageHero({
     <section className="pt-28 md:pt-32">
       <div className="container-x">
         {crumbs && <Breadcrumbs crumbs={crumbs} />}
-        <div className="animate-fade-up mt-10 grid gap-6 [animation-delay:80ms] md:grid-cols-12">
-          <div className="md:col-span-3">{eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}</div>
-          <div className="flex flex-col items-start gap-6 md:col-span-9">
-            <h1 className="text-h1">{title}</h1>
-            {intro && <p className="max-w-[48rem] text-lead text-stone">{intro}</p>}
-            {children}
-          </div>
+        <div className="animate-fade-up mt-10 flex flex-col items-start gap-6 [animation-delay:80ms]">
+          {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+          <h1 className="max-w-[60rem] text-h1">{title}</h1>
+          {intro && <p className="max-w-[46rem] text-lead text-stone">{intro}</p>}
+          {children}
         </div>
         {image && size !== "sm" && (
           <div

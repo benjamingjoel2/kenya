@@ -23,7 +23,7 @@ export default function SafarisPage() {
         size="sm"
         eyebrow="Safaris"
         title="Sample safaris, made to measure"
-        intro="Use these as inspiration. Every journey is reshaped around your dates, interests and budget, and priced transparently."
+        intro="Use these as inspiration. Every journey is reshaped around your dates, interests and budget, then quoted individually on enquiry."
         crumbs={[{ label: "Home", href: "/" }, { label: "Safaris" }]}
       />
       <section className="pt-14 pb-20 md:pb-28">

@@ -13,7 +13,6 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { CountUp } from "@/components/ui/CountUp";
 import { Notch } from "@/components/ui/Notch";
-import { Price } from "@/components/ui/Price";
 import { CardImage } from "@/components/ui/CardImage";
 import { SafariRow } from "@/components/cards/SafariRow";
 import { PersonCard } from "@/components/cards/PersonCard";
@@ -84,7 +83,7 @@ export function AboutSection() {
           }
         />
         <div className="mt-14 grid gap-6 md:grid-cols-12">
-          <Reveal className="relative aspect-[4/5] overflow-hidden rounded-[var(--radius-card)] md:col-span-5">
+          <Reveal className="relative aspect-[4/5] overflow-hidden rounded-[var(--radius-card)] md:col-span-5 md:aspect-auto md:min-h-[32rem]">
             <Image src={visual.src} alt={visual.alt} fill sizes="(min-width: 768px) 40vw, 100vw" className="object-cover" />
           </Reveal>
           <div className="flex flex-col justify-between gap-10 md:col-span-7 md:pl-[4%]">
@@ -194,7 +193,7 @@ export function CombineSection() {
           <RevealItem className="flex flex-col justify-between gap-8 rounded-[var(--radius-card)] bg-acacia p-6 text-cream md:row-span-2 md:p-8">
             <p className="text-lead text-white">
               Combine game drives, the right camps, light-aircraft flights, transfers and a beach finish into one seamless
-              itinerary, with one clear, itemised price.
+              itinerary, with one tailor-made, itemised quote.
             </p>
             <div>
               <StartPlanningButton variant="light" />
@@ -230,10 +229,12 @@ export function DestinationMap() {
           intro="Big-cat country in the Mara, elephants beneath Kilimanjaro, the wild north, rhino sanctuaries in Laikipia and a coastline of coral and dhows."
         />
         <div className="mt-14 grid items-center gap-10 md:grid-cols-12">
-          <Reveal className="md:col-span-7">
-            <KenyaDotMap />
+          <Reveal className="md:col-span-6">
+            <div className="mx-auto max-w-[40rem]">
+              <KenyaDotMap />
+            </div>
           </Reveal>
-          <RevealGroup className="flex flex-col divide-y divide-line border-y border-line md:col-span-5">
+          <RevealGroup className="flex flex-col divide-y divide-line border-y border-line md:col-span-6">
             {destinations.slice(0, 7).map((d) => (
               <RevealItem key={d.slug}>
                 <Link href={`/destinations/${d.slug}`} className="group flex items-baseline justify-between gap-4 py-4">
@@ -290,7 +291,7 @@ export function ExperiencesSection() {
             </RevealItem>
           ))}
         </RevealGroup>
-        <div className="flex flex-col gap-12 md:col-span-6 md:pl-[6%]">
+        <div className="flex flex-col gap-12 self-start md:sticky md:top-28 md:col-span-6 md:pl-[6%]">
           <Reveal className="flex flex-col gap-6">
             <Eyebrow>Experiences</Eyebrow>
             <h2 className="text-h2">
@@ -382,7 +383,7 @@ export function StaysSection() {
           intro="Canvas under the stars, conservancy lodges facing Mount Kenya and barefoot villas on the Indian Ocean."
           action={<ButtonLink href="/stays" variant="outline">All stays</ButtonLink>}
         />
-        <RevealGroup className="mt-14 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
+        <RevealGroup className="mt-14 grid grid-cols-2 gap-2 lg:grid-cols-4">
           {stays.slice(0, 4).map((s) => (
             <RevealItem key={s.slug}>
               <StayPersonCard slug={s.slug} />
@@ -394,7 +395,7 @@ export function StaysSection() {
   );
 }
 
-export function StayPersonCard({ slug }: { slug: string }) {
+export function StayPersonCard({ slug, compact = true }: { slug: string; compact?: boolean }) {
   const s = stays.find((x) => x.slug === slug)!;
   return (
     <PersonCard
@@ -404,11 +405,8 @@ export function StayPersonCard({ slug }: { slug: string }) {
       subtitle={stayTypeLabels[s.type]}
       chip={getDestination(s.destinationSlug)?.name}
       info={<p className="line-clamp-6">{s.summary}</p>}
-      footer={
-        <span>
-          From <Price usd={s.priceFromUsd} className="font-semibold" /> per person · night
-        </span>
-      }
+      footer={<span className="font-medium">View stay →</span>}
+      compact={compact}
     />
   );
 }
@@ -453,7 +451,7 @@ export function JournalSection({ posts }: { posts: PostMeta[] }) {
         <SectionHeading align="split" eyebrow="Journal" title="Field notes from Kenya" action={<ButtonLink href="/blog" variant="outline">Read the journal</ButtonLink>} />
         <RevealGroup className="mt-14 grid gap-x-2 gap-y-10 md:grid-cols-3">
           {posts.slice(0, 3).map((p) => (
-            <RevealItem key={p.slug}>
+            <RevealItem key={p.slug} className="h-full">
               <PostCard post={p} />
             </RevealItem>
           ))}

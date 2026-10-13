@@ -36,12 +36,14 @@ export default function ConservationPage() {
             title="Four principles behind every itinerary"
             intro="We are not perfect, and we won't pretend travel is impact-free. But we make deliberate choices, and we'll always explain them."
           />
-          <RevealGroup className="mt-14 grid gap-8 md:grid-cols-2">
+          <RevealGroup className="mt-14 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
             {pillars.map((p, i) => (
-              <RevealItem key={p.t} className="border-t border-charcoal pt-8">
-                <span className="font-serif text-2xl text-gold-dark">0{i + 1}</span>
-                <h3 className="mt-4 text-h3">{p.t}</h3>
-                <p className="mt-4 max-w-xl text-stone">{p.d}</p>
+              <RevealItem key={p.t} className="flex min-h-[18rem] flex-col justify-between gap-8 rounded-[var(--radius-card)] bg-paper p-6">
+                <span className="text-h3 font-medium tracking-[-0.03em] text-charcoal">0{i + 1}</span>
+                <div>
+                  <h3 className="text-lg font-medium tracking-[-0.01em]">{p.t}</h3>
+                  <p className="mt-2 text-sm text-stone">{p.d}</p>
+                </div>
               </RevealItem>
             ))}
           </RevealGroup>
@@ -51,7 +53,7 @@ export default function ConservationPage() {
         <div className="container-x flex min-h-[70svh] items-center py-28">
           <Reveal className="max-w-3xl">
             <p className="eyebrow text-gold-pale">Rhino country</p>
-            <p className="mt-6 font-serif text-[clamp(1.75rem,1.2rem+2vw,3rem)] leading-tight text-white">
+            <p className="mt-6 text-h3 font-medium tracking-[-0.03em] text-white">
               Laikipia and Lewa are home to some of Kenya’s most important black and white rhino populations. Every guest night in
               these sanctuaries helps fund the rangers who protect them.
             </p>
@@ -59,9 +61,9 @@ export default function ConservationPage() {
         </div>
       </ParallaxBand>
       <section className="section-y bg-sand/60">
-        <div className="container-x max-w-3xl">
+        <div className="container-x">
           <SectionHeading eyebrow="Get involved" title="Want to give back?" />
-          <Reveal className="mt-8 flex flex-col gap-5 text-lead text-ink/85">
+          <Reveal className="mt-8 flex max-w-[44rem] flex-col gap-5 text-lg text-stone">
             <p>
               Ask your specialist about visiting a conservancy’s community projects, spending time with an anti-poaching or
               rhino-monitoring team, or packing something genuinely useful for a school. We can point you to reputable

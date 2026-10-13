@@ -235,7 +235,7 @@ export const experiences: Experience[] = [
     body: [
       "Spending an hour with a family of mountain gorillas is among the most moving wildlife encounters on earth. From Nairobi, a short flight takes you to Kigali in Rwanda or Entebbe in Uganda, making a gorilla extension a natural addition to a Kenyan safari.",
       "In Rwanda's Volcanoes National Park, treks begin on the bamboo-clad slopes of the Virunga volcanoes and are usually shorter and more accessible. Uganda's Bwindi Impenetrable Forest lives up to its name — steeper, denser terrain, but with more habituated families and lower permit prices.",
-      "Permits are strictly limited each day, so we recommend booking several months ahead, especially for peak months. Currently a Rwanda permit costs approximately USD 1,500 per person and a Uganda permit approximately USD 800 — both subject to change. A reasonable level of fitness is needed, and porters are available to help.",
+      "Permits are strictly limited each day, so we recommend booking several months ahead, especially for peak months. Permit fees are set by the Rwandan and Ugandan authorities and are included in your tailor-made quote. A reasonable level of fitness is needed, and porters are available to help.",
     ],
     hero: img("gorilla"),
     bestFor: ["Once-in-a-lifetime experiences", "Primate enthusiasts", "Extending a Kenya safari", "Active travellers"],
