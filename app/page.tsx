@@ -1,0 +1,54 @@
+import { site } from "@/config/site";
+import { buildMetadata, JsonLd } from "@/lib/seo";
+import { getAllPosts } from "@/lib/posts";
+import { Hero } from "@/components/home/Hero";
+import {
+  AboutSection,
+  CombineSection,
+  DestinationMap,
+  DestinationStats,
+  ExperiencesSection,
+  FeaturedSafaris,
+  GuestStory,
+  JournalSection,
+  PlanCta,
+  StaysSection,
+  WhyUs,
+} from "@/components/home/HomeSections";
+import { Newsletter } from "@/components/sections/Newsletter";
+
+export const metadata = buildMetadata({});
+
+export default function Home() {
+  return (
+    <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "TravelAgency",
+          name: site.name,
+          description: site.description,
+          url: site.url,
+          telephone: site.contact.phone,
+          email: site.contact.email,
+          address: { "@type": "PostalAddress", addressLocality: "Nairobi", addressCountry: "KE" },
+          areaServed: "Kenya",
+          sameAs: site.socials.map((s) => s.href),
+        }}
+      />
+      <Hero />
+      <DestinationStats />
+      <AboutSection />
+      <FeaturedSafaris />
+      <CombineSection />
+      <DestinationMap />
+      <ExperiencesSection />
+      <WhyUs />
+      <StaysSection />
+      <GuestStory />
+      <JournalSection posts={getAllPosts()} />
+      <Newsletter />
+      <PlanCta />
+    </>
+  );
+}
