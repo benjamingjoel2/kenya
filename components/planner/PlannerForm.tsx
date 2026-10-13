@@ -349,23 +349,18 @@ function StepBudget({ form, uid }: StepProps) {
   const { register, watch, formState: { errors } } = form;
   const budget = watch("budget");
   return (
-    <Fieldset legend="Approximate spend, per person per day, excluding international flights" error={msg(errors, "budget")} errorId={err(uid, "budget")}>
+    <Fieldset legend="Which style of travel feels right?" error={msg(errors, "budget")} errorId={err(uid, "budget")}>
       <div className="grid gap-3 md:grid-cols-2">
         {budgetTiers.map((b) => (
           <ChoiceTile key={b.id} type="radio" value={b.id} checked={budget === b.id} {...register("budget")}>
             <span className="flex flex-col gap-2 p-6 pr-12">
-              <span className="font-serif text-2xl text-charcoal">{b.name}</span>
-              {b.range && (
-                <span className="text-sm font-semibold text-acacia">
-                  {b.range} <span className="font-normal text-stone">{b.note}</span>
-                </span>
-              )}
+              <span className="text-xl font-medium tracking-[-0.02em] text-charcoal">{b.name}</span>
               <span className="text-sm text-stone">{b.text}</span>
             </span>
           </ChoiceTile>
         ))}
       </div>
-      <p className="mt-4 text-sm text-stone">Prices shown in USD. Park and conservancy fees are included in all our quotes.</p>
+      <p className="mt-4 text-sm text-stone">Every journey is quoted individually. Park and conservancy fees are always included in your quote.</p>
     </Fieldset>
   );
 }
@@ -527,7 +522,7 @@ function Confirmation({ name, variant }: { name: string; variant: "page" | "moda
           </ButtonLink>
         </div>
       )}
-      <p className="mt-12 font-serif text-5xl italic text-gold-dark">{site.signOff}</p>
+      <p className="mt-12 text-h3 font-medium tracking-[-0.03em] text-gold-dark">{site.signOff}</p>
     </motion.div>
   );
 }

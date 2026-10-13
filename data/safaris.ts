@@ -2,8 +2,8 @@ import type { BudgetTier, Safari } from "./types";
 import { img } from "./images";
 
 /**
- * Sample tailor-made itineraries. Prices are indicative "from" rates in USD,
- * per person sharing, excluding international flights. Every trip is adjusted
+ * Sample tailor-made itineraries. There are no fixed prices: every journey is
+ * quoted individually on enquiry. Every trip is adjusted
  * to the traveller — these are starting points, not fixed packages.
  */
 export const safaris: Safari[] = [
@@ -22,7 +22,6 @@ export const safaris: Safari[] = [
       "Night drives and guided bush walks, off limits in the reserve",
       "Optional dawn balloon flight over the plains",
     ],
-    priceFromUsd: 3400,
     hero: img("mara-golden-hour"),
     summary:
       "The simplest, most rewarding introduction to Kenya: a short flight from Nairobi and four unhurried nights in one of the finest wildlife areas in Africa. Staying in a private conservancy means fewer vehicles, freedom to go off-road, and the chance to explore on foot and after dark.",
@@ -64,7 +63,7 @@ export const safaris: Safari[] = [
       "Kenya eTA (electronic travel authorisation)",
       "Travel insurance",
       "Tips and gratuities",
-      "Hot-air balloon flight (approx. US$550 per person)",
+      "Optional dawn hot-air balloon flight",
       "Premium spirits and champagne",
     ],
     featured: true,
@@ -84,7 +83,6 @@ export const safaris: Safari[] = [
       "A morning with Nairobi's orphaned elephants",
       "Comfortable, characterful camps with excellent guiding",
     ],
-    priceFromUsd: 4900,
     hero: img("elephant-kilimanjaro"),
     summary:
       "Kenya's two most iconic landscapes in a single week: the rolling Mara, home to some of Africa's densest predator populations, and the swamps and dust pans of Amboseli beneath the snows of Kilimanjaro. A thoughtfully paced first safari that offers real value without compromising on guiding.",
@@ -152,7 +150,6 @@ export const safaris: Safari[] = [
       "Full days at the Mara River crossing points",
       "Champagne hot-air balloon flight included",
     ],
-    priceFromUsd: 9200,
     hero: img("migration-crossing"),
     summary:
       "Built around one of the great natural events on Earth, this journey gives you the time and flexibility to be at the Mara River when the herds decide to cross. A private vehicle and one of our most experienced guides mean you wait as long as it takes, and leave the moment the light goes flat.",
@@ -221,7 +218,6 @@ export const safaris: Safari[] = [
       "Rhino tracking on foot with conservancy rangers",
       "Horseback, camel walks and night drives",
     ],
-    priceFromUsd: 7600,
     hero: img("laikipia-plateau"),
     summary:
       "Two of Kenya's great conservancy landscapes, each completely different in character: the lush, cat-filled Mara and the high, wild Laikipia plateau in the shadow of Mount Kenya. Expect few other vehicles, a wide range of activities and some of the most exciting conservation work in Africa.",
@@ -289,7 +285,6 @@ export const safaris: Safari[] = [
       "Rhino conservation at Lewa, a UNESCO World Heritage site",
       "Time with Samburu warriors and elders",
     ],
-    priceFromUsd: 6400,
     hero: img("reticulated-giraffe"),
     summary:
       "For those who want a Kenya beyond the classic circuit, this journey heads north into the arid, sculpted country of Samburu and up onto the grasslands of Lewa. The wildlife is distinctive, the landscapes vast and the cultural encounters genuine.",
@@ -356,7 +351,6 @@ export const safaris: Safari[] = [
       "Five nights on Diani's white-sand beach",
       "Snorkelling, dhow trips and Colobus monkeys in the coastal forest",
     ],
-    priceFromUsd: 5900,
     hero: img("diani-beach"),
     summary:
       "The classic Kenyan combination of wildlife and Indian Ocean, kept simple and good value. Four nights on the Mara plains are followed by five days of warm water, reef and slow mornings on one of East Africa's finest beaches.",
@@ -423,7 +417,6 @@ export const safaris: Safari[] = [
       "Four nights in a restored Swahili house in Shela",
       "Sunset dhow sailing in the Lamu archipelago",
     ],
-    priceFromUsd: 10800,
     hero: img("honeymoon"),
     summary:
       "A honeymoon of two halves: the drama and intimacy of a Mara conservancy, then the unhurried, car-free calm of Lamu, a UNESCO-listed Swahili town where donkeys still outnumber vehicles. Every detail is private, and nothing is rushed.",
@@ -491,7 +484,6 @@ export const safaris: Safari[] = [
       "Cycling among zebra and giraffe at Hell's Gate",
       "A private vehicle so you set the pace",
     ],
-    priceFromUsd: 6900,
     hero: img("family-safari"),
     summary:
       "Designed around the attention spans and curiosity of children, this journey mixes thrilling game drives with hands-on activities, short travel days and plenty of room to run around. Every camp welcomes families and a private vehicle keeps things flexible.",
@@ -563,9 +555,8 @@ export const safaris: Safari[] = [
       "Big cats in the Masai Mara conservancies",
       "Rhino and northern species on the Laikipia plateau",
       "An hour with mountain gorillas in Rwanda's Volcanoes National Park",
-      "Rwanda gorilla permit (US$1,500) included",
+      "Rwanda gorilla permit included",
     ],
-    priceFromUsd: 12500,
     hero: img("gorilla"),
     summary:
       "The ultimate East African journey, pairing Kenya's savanna safaris with a once-in-a-lifetime encounter with mountain gorillas. Short regional flights make the combination straightforward, and every stage is privately guided.",
@@ -613,7 +604,7 @@ export const safaris: Safari[] = [
       "Private vehicle and guide in the Mara and Laikipia",
       "All light-aircraft flights within Kenya",
       "Regional flight Nairobi–Kigali",
-      "One Rwanda gorilla trekking permit per person (US$1,500)",
+      "One Rwanda gorilla trekking permit per person",
       "Golden monkey tracking permit",
       "Park, reserve and conservancy fees",
     ],

@@ -42,7 +42,7 @@ export default async function ExperiencePage({ params }: Props) {
         title={
           <>
             {e.name}
-            <span className="block text-stone">{e.tagline}</span>
+            <span className="mt-2 block text-[0.55em] leading-[1.1] text-stone">{e.tagline}</span>
           </>
         }
         photos={[e.hero, ...where.map((d) => d.hero)]}

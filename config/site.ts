@@ -1,5 +1,5 @@
 /**
- * Single source of truth for brand, contact details, navigation and currencies.
+ * Single source of truth for brand, contact details and navigation.
  * Replace the [BRACKETED] placeholders before launch.
  */
 
@@ -84,31 +84,6 @@ export const footerNav = {
     { label: "Cookies", href: "/cookies" },
   ],
 } as const;
-
-export const currencies = {
-  USD: { symbol: "$", label: "US Dollar", locale: "en-US" },
-  EUR: { symbol: "€", label: "Euro", locale: "de-DE" },
-  GBP: { symbol: "£", label: "British Pound", locale: "en-GB" },
-  AUD: { symbol: "A$", label: "Australian Dollar", locale: "en-AU" },
-  CAD: { symbol: "C$", label: "Canadian Dollar", locale: "en-CA" },
-  KES: { symbol: "KSh", label: "Kenyan Shilling", locale: "en-KE" },
-} as const;
-
-export type CurrencyCode = keyof typeof currencies;
-export const baseCurrency: CurrencyCode = "USD";
-
-/**
- * Indicative rates: 1 USD = X. TODO: replace with a live rates source
- * (e.g. fetched daily in a route handler and cached).
- */
-export const exchangeRates: Record<CurrencyCode, number> = {
-  USD: 1,
-  EUR: 0.92,
-  GBP: 0.78,
-  AUD: 1.52,
-  CAD: 1.37,
-  KES: 129,
-};
 
 export const whatsappHref = (text = "Hello Safari Njema, I'd love help planning a Kenya safari.") =>
   `https://wa.me/${site.contact.whatsapp}?text=${encodeURIComponent(text)}`;

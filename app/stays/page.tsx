@@ -32,7 +32,7 @@ export default function StaysPage() {
             return (
               <div key={t}>
                 <SectionHeading eyebrow="Stay style" title={`${stayTypeLabels[t]}s`} />
-                <RevealGroup className="mt-10 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+                <RevealGroup className="mt-10 grid grid-cols-2 gap-2 lg:grid-cols-4">
                   {items.map((s) => (
                     <RevealItem key={s.slug}>
                       <StayPersonCard slug={s.slug} />

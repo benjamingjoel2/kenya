@@ -49,7 +49,7 @@ export type PlannerValues = z.infer<typeof plannerSchema>;
 export const STEPS = [
   { id: "when", label: "When", title: "When would you like to travel?", fields: ["arrivalDate", "nights", "dateFlexibility", "travellerType"] },
   { id: "where", label: "Where", title: "Where would you like to go?", fields: ["routes", "routeNotes"] },
-  { id: "budget", label: "Budget", title: "What level of comfort suits you?", fields: ["budget"] },
+  { id: "budget", label: "Style", title: "What style of travel suits you?", fields: ["budget"] },
   { id: "who", label: "Who", title: "Who is travelling?", fields: ["adults", "children", "childAges", "addOns"] },
   { id: "contact", label: "Contact", title: "How can we reach you?", fields: ["name", "email", "phoneCode", "phone", "contactMethods", "notes"] },
 ] as const satisfies readonly { id: string; label: string; title: string; fields: readonly (keyof PlannerValues)[] }[];

@@ -23,7 +23,8 @@ export default function ExperiencesPage() {
       />
       <section className="pt-14 pb-20 md:pb-28">
         <div className="container-x">
-          <RevealGroup className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
+          <h2 className="sr-only">All experiences</h2>
+          <RevealGroup className="grid grid-cols-2 gap-2 lg:grid-cols-4">
             {experiences.map((e) => (
               <RevealItem key={e.slug}>
                 <PersonCard
@@ -33,6 +34,7 @@ export default function ExperiencesPage() {
                   subtitle={e.tagline}
                   info={<p className="line-clamp-6">{e.summary}</p>}
                   footer={<span className="font-medium">Discover →</span>}
+                  compact
                 />
               </RevealItem>
             ))}

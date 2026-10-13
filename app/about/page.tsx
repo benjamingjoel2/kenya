@@ -16,7 +16,7 @@ export const metadata = buildMetadata({
 
 const steps = [
   { t: "A conversation", d: "You tell us who's travelling, when, and what matters. We ask good questions and listen properly." },
-  { t: "Ideas, not a package", d: "Your specialist sketches one or two routes with honest pros and cons, and a clear, itemised price." },
+  { t: "Ideas, not a package", d: "Your specialist sketches one or two routes with honest pros and cons, and a clear, itemised quote." },
   { t: "Refined together", d: "We adjust camps, pace and budget until it feels exactly right. No pressure, no deadlines we didn't agree." },
   { t: "Every detail handled", d: "Park fees, flights, transfers, eTA guidance and packing notes. Then a travel pack you can actually use." },
   { t: "Looked after on the ground", d: "Meet-and-greet in Nairobi, vetted guides, and 24/7 WhatsApp support from someone who knows your trip." },
@@ -31,7 +31,7 @@ export default function AboutPage() {
       <PageHero
         image={img("sundowner")}
         eyebrow="About Safari Njema"
-        title={<>Have a good journey. <em className="italic text-gold-light">We mean it.</em></>}
+        title={<>Have a good journey. <em>We mean it.</em></>}
         intro="We are a small Nairobi-based team who believe a safari should feel personal from the very first message."
         crumbs={[{ label: "Home", href: "/" }, { label: "About" }]}
       />
@@ -44,7 +44,7 @@ export default function AboutPage() {
               <BeadDivider className="mt-5" />
               <h2 className="mt-6 text-h2">Named for a send-off</h2>
             </Reveal>
-            <Reveal delay={0.1} className="mt-8 flex flex-col gap-6 text-lead text-ink/85">
+            <Reveal delay={0.1} className="mt-8 flex max-w-[44rem] flex-col gap-5 text-lg text-stone">
               <p>
                 In Kenya, when someone sets off on a journey, the people who love them say <em>“safari njema”</em>: have a good
                 journey. It is said at bus stations and airports, at farm gates and front doors. It is warm, it is personal, and
@@ -74,15 +74,20 @@ export default function AboutPage() {
       </section>
 
 
-      <section className="section-y bg-cream">
+      <section className="section-y bg-sand/50">
         <div className="container-x">
-          <SectionHeading eyebrow="How it works" title="From first hello to safari njema" align="center" />
-          <RevealGroup className="mt-16 grid gap-px overflow-hidden rounded-[var(--radius-card)] border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
+          <SectionHeading eyebrow="How it works" title="From first hello to safari njema" />
+          <RevealGroup className="mt-14 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {steps.map((s, i) => (
-              <RevealItem key={s.t} className="bg-cream p-8 md:p-10">
-                <span className="font-serif text-4xl text-gold-dark">0{i + 1}</span>
-                <h3 className="mt-5 text-2xl">{s.t}</h3>
-                <p className="mt-3 text-stone">{s.d}</p>
+              <RevealItem key={s.t} className="flex min-h-[15rem] flex-col justify-between gap-8 rounded-[var(--radius-card)] bg-paper p-6">
+                <div className="flex items-start justify-between">
+                  <span className="text-h3 font-medium tracking-[-0.03em] text-charcoal">0{i + 1}</span>
+                  <span className="text-[0.8125rem] text-stone">Step</span>
+                </div>
+                <div>
+                  <h3 className="text-lg font-medium tracking-[-0.01em]">{s.t}</h3>
+                  <p className="mt-2 text-sm text-stone">{s.d}</p>
+                </div>
               </RevealItem>
             ))}
           </RevealGroup>

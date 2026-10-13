@@ -13,8 +13,8 @@ export function Eyebrow({ children, tone = "dark", className }: { children: Reac
 }
 
 /**
- * Section head, mirroring the reference:
- *  - "default": eyebrow in a 3/12 column, h2 (+ body-xl intro) in a 9/12 column.
+ * Section head:
+ *  - "default": eyebrow, h2 and intro stacked and left-aligned with the content below.
  *  - "split":   h2 on the left half, short blurb + action bottom-aligned on the right half.
  *  - "center":  stacked and centred (used sparingly on inner pages).
  */
@@ -67,13 +67,11 @@ export function SectionHeading({
     );
 
   return (
-    <Reveal className={cn("grid gap-6 md:grid-cols-12", className)}>
-      <div className="md:col-span-3">{eyebrow && <Eyebrow tone={tone}>{eyebrow}</Eyebrow>}</div>
-      <div className="flex flex-col items-start gap-6 md:col-span-9">
-        <Tag className={titleCls}>{title}</Tag>
-        {intro && <p className={cn(introCls, "max-w-[48rem]")}>{intro}</p>}
-        {action}
-      </div>
+    <Reveal className={cn("flex flex-col items-start gap-6", className)}>
+      {eyebrow && <Eyebrow tone={tone}>{eyebrow}</Eyebrow>}
+      <Tag className={cn(titleCls, "max-w-[60rem]")}>{title}</Tag>
+      {intro && <p className={cn(introCls, "max-w-[46rem]")}>{intro}</p>}
+      {action}
     </Reveal>
   );
 }

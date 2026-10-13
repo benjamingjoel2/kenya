@@ -39,7 +39,7 @@ export function PlannerModal({ onClose }: { onClose: () => void }) {
         className="relative flex max-h-[94svh] w-full max-w-4xl flex-col overflow-hidden rounded-t-xl bg-cream shadow-2xl md:rounded-xl"
       >
         <div className="flex items-center justify-between gap-4 border-b border-line px-6 py-4 md:px-10">
-          <p className="font-serif text-xl text-charcoal">Plan your safari</p>
+          <p className="text-lg font-medium text-charcoal">Plan your safari</p>
           <div className="flex items-center gap-4">
             <Link href="/plan-your-safari" onClick={onClose} className="hidden text-sm text-stone underline-offset-4 hover:underline sm:inline">
               Open full page

@@ -2,13 +2,13 @@ import Link from "next/link";
 import type { Safari } from "@/data/types";
 import { budgetLabels } from "@/data/safaris";
 import { CardImage } from "@/components/ui/CardImage";
-import { Price } from "@/components/ui/Price";
 import { ButtonLink } from "@/components/ui/Button";
+import { StartPlanningButton } from "@/components/planner/StartPlanningButton";
 import { CalendarIcon, MealIcon, PinIcon, SparkIcon, StarsIcon } from "@/components/ui/Icons";
 
 function Property({ icon: Icon, children }: { icon: (p: React.SVGProps<SVGSVGElement>) => React.ReactNode; children: React.ReactNode }) {
   return (
-    <div className="relative min-h-[5.5rem] rounded-[var(--radius-field)] bg-cream p-4 pr-10 text-[0.8125rem] leading-snug text-charcoal">
+    <div className="relative rounded-[var(--radius-field)] bg-cream p-4 pr-10 sm:min-h-[5.5rem] text-[0.8125rem] leading-snug text-charcoal">
       {children}
       <Icon className="absolute top-4 right-4 h-4 w-4 text-charcoal/35" />
     </div>
@@ -26,30 +26,21 @@ export function SafariRow({ safari: s, priority }: { safari: Safari; priority?: 
               {s.title}
             </Link>
           </h3>
-          <div className="shrink-0 sm:text-right">
-            <p className="text-sm text-stone">from</p>
-            <p className="text-xl font-semibold text-charcoal">
-              <Price usd={s.priceFromUsd} />
-              <span className="text-sm font-normal text-stone"> per person</span>
-            </p>
-            <p className="mt-0.5 text-xs text-stone">
-              ≈ <Price usd={s.priceFromUsd * 2} /> for two · international flights excluded
-            </p>
-          </div>
+          <span className="shrink-0 rounded-full bg-cream px-3 py-1.5 text-[0.8125rem] font-medium text-charcoal">Tailor-made · on enquiry</span>
         </div>
 
         <Link href={`/safaris/${s.slug}`} tabIndex={-1} aria-hidden className="block md:hidden">
           <CardImage image={s.hero} sizes="100vw" className="aspect-[16/11] rounded-[var(--radius-media)]" priority={priority} />
         </Link>
 
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid gap-2 sm:grid-cols-2">
           <Property icon={PinIcon}>{s.regions.join(" · ")}</Property>
           <Property icon={CalendarIcon}>
             {s.nights} nights <span className="text-stone">({s.nights + 1} days)</span>
           </Property>
           <Property icon={MealIcon}>{s.inclusionLine}</Property>
           <Property icon={StarsIcon}>
-            {budgetLabels[s.budget]} <span className="text-stone">· tailor-made, private</span>
+            {budgetLabels[s.budget]} style <span className="text-stone">· private, tailor-made</span>
           </Property>
         </div>
 
@@ -62,10 +53,11 @@ export function SafariRow({ safari: s, priority }: { safari: Safari; priority?: 
           ))}
         </ul>
 
-        <div className="mt-auto">
+        <div className="mt-auto flex flex-wrap gap-2">
           <ButtonLink href={`/safaris/${s.slug}`} variant="outline" aria-label={`View safari: ${s.title}`}>
             View safari
           </ButtonLink>
+          <StartPlanningButton variant="primary">Enquire</StartPlanningButton>
         </div>
       </div>
 

@@ -7,7 +7,6 @@ import { DetailTemplate, Fact, IconList, ScheduleRows } from "@/components/secti
 import { MapPlaceholder } from "@/components/sections/MapPlaceholder";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { Price } from "@/components/ui/Price";
 import { ButtonLink } from "@/components/ui/Button";
 import { StartPlanningButton } from "@/components/planner/StartPlanningButton";
 import { SafariRow } from "@/components/cards/SafariRow";
@@ -46,7 +45,6 @@ export default async function SafariPage({ params }: Props) {
           description: s.summary,
           touristType: budgetLabels[s.budget],
           itinerary: { "@type": "ItemList", itemListElement: s.itinerary.map((d, i) => ({ "@type": "ListItem", position: i + 1, name: `${d.day}: ${d.title}` })) },
-          offers: { "@type": "Offer", price: s.priceFromUsd, priceCurrency: "USD", description: "From, per person sharing, excluding international flights" },
           provider: { "@type": "TravelAgency", name: site.name, url: site.url },
         }}
       />
@@ -58,12 +56,9 @@ export default async function SafariPage({ params }: Props) {
         sidebar={{
           head: (
             <div>
-              <p className="text-lead text-stone">from</p>
-              <p className="text-h4 text-charcoal">
-                <Price usd={s.priceFromUsd} /> <span className="text-base font-normal text-stone">per person</span>
-              </p>
-              <p className="mt-1 text-sm text-stone">
-                ≈ <Price usd={s.priceFromUsd * 2} /> for two · international flights excluded
+              <p className="text-h4 text-charcoal">Tailor-made</p>
+              <p className="mt-2 text-sm text-stone">
+                No fixed packages. Your specialist shapes this route around your dates, pace and travellers, then sends a clear, itemised quote.
               </p>
             </div>
           ),
@@ -87,7 +82,6 @@ export default async function SafariPage({ params }: Props) {
                   <WhatsAppIcon className="h-4 w-4" /> Ask on WhatsApp
                 </span>
               </ButtonLink>
-              <p className="pt-2 text-xs text-stone">Prices are a guide, per person sharing, and vary by season. Your specialist confirms a full, itemised quote.</p>
             </>
           ),
         }}

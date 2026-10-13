@@ -60,7 +60,6 @@ export interface Safari {
   budget: BudgetTier;
   inclusionLine: string;
   highlights: string[];
-  priceFromUsd: number;
   hero: Img;
   summary: string;
   bestTime: string;
@@ -81,8 +80,6 @@ export interface Stay {
   summary: string;
   body: string[];
   features: string[];
-  /** Per person, per night, base USD. */
-  priceFromUsd: number;
   hero: Img;
   gallery: Img[];
 }

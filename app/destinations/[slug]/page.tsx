@@ -92,7 +92,7 @@ export default async function DestinationPage({ params }: Props) {
             label: "Where to stay",
             title: `Where to stay in ${d.name}`,
             content: (
-              <div className="grid gap-2 sm:grid-cols-2">
+              <div className="grid grid-cols-2 gap-2">
                 {localStays.map((s) => (
                   <StayPersonCard key={s.slug} slug={s.slug} />
                 ))}
@@ -112,7 +112,7 @@ export default async function DestinationPage({ params }: Props) {
         title={
           <>
             {d.name}
-            <span className="block text-stone">{d.tagline}</span>
+            <span className="mt-2 block text-[0.55em] leading-[1.1] text-stone">{d.tagline}</span>
           </>
         }
         photos={[d.hero, ...d.gallery]}

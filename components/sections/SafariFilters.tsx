@@ -85,7 +85,7 @@ export function SafariFilters({ items, budgetLabels }: { items: Item[]; budgetLa
           </div>
         </div>
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
-          <p className="w-28 shrink-0 text-sm font-semibold text-charcoal">Budget</p>
+          <p className="w-28 shrink-0 text-sm font-semibold text-charcoal">Style</p>
           <div className="flex flex-wrap gap-2">
             {(Object.keys(budgetLabels) as BudgetTier[]).map((b) => (
               <Chip key={b} active={budget === b} onClick={() => toggle(b, budget, setBudget)}>
