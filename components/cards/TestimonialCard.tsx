@@ -10,9 +10,9 @@ export function PlaceholderBadge() {
 
 export function TestimonialCard({ t }: { t: Testimonial }) {
   return (
-    <figure className="flex h-full flex-col rounded-[var(--radius-card)] border border-line bg-white/60 p-8">
+    <figure className="flex h-full flex-col rounded-[var(--radius-card)] bg-paper p-6 md:p-8">
       <PlaceholderBadge />
-      <blockquote className="mt-6 flex-1 font-serif text-xl leading-snug text-charcoal">“{t.quote}”</blockquote>
+      <blockquote className="mt-6 flex-1 text-xl leading-snug tracking-[-0.01em] text-charcoal">“{t.quote}”</blockquote>
       <figcaption className="mt-8 border-t border-line pt-5 text-sm">
         <span className="font-semibold text-charcoal">{t.name}</span>
         <span className="text-stone"> · {t.from}</span>

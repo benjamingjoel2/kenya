@@ -1,20 +1,21 @@
 import { site } from "@/config/site";
 import { buildMetadata, JsonLd } from "@/lib/seo";
 import { getAllPosts } from "@/lib/posts";
-import { Hero } from "@/components/sections/Hero";
-import { TrustRow } from "@/components/sections/TrustRow";
-import { BrandIntro } from "@/components/sections/BrandIntro";
+import { Hero } from "@/components/home/Hero";
 import {
-  DestinationsSection,
+  AboutSection,
+  CombineSection,
+  DestinationMap,
+  DestinationStats,
   ExperiencesSection,
-  FeaturedSafarisSection,
-  LatestPostsSection,
+  FeaturedSafaris,
+  GuestStory,
+  JournalSection,
+  PlanCta,
   StaysSection,
-  WhyUsSection,
-} from "@/components/sections/HomeSections";
-import { MigrationBand } from "@/components/sections/MigrationBand";
+  WhyUs,
+} from "@/components/home/HomeSections";
 import { Newsletter } from "@/components/sections/Newsletter";
-import { FinalCta } from "@/components/sections/FinalCta";
 
 export const metadata = buildMetadata({});
 
@@ -36,17 +37,18 @@ export default function Home() {
         }}
       />
       <Hero />
-      <TrustRow />
-      <BrandIntro />
-      <DestinationsSection />
-      <FeaturedSafarisSection />
+      <DestinationStats />
+      <AboutSection />
+      <FeaturedSafaris />
+      <CombineSection />
+      <DestinationMap />
       <ExperiencesSection />
-      <MigrationBand />
+      <WhyUs />
       <StaysSection />
-      <WhyUsSection />
-      <LatestPostsSection posts={getAllPosts()} />
+      <GuestStory />
+      <JournalSection posts={getAllPosts()} />
       <Newsletter />
-      <FinalCta />
+      <PlanCta />
     </>
   );
 }

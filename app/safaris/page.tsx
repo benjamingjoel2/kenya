@@ -1,11 +1,10 @@
 import { safaris, budgetLabels } from "@/data/safaris";
 import { getDestination } from "@/data/destinations";
-import { img } from "@/data/images";
 import type { RegionId } from "@/data/types";
 import { buildMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/sections/PageHero";
 import { SafariFilters } from "@/components/sections/SafariFilters";
-import { FinalCta } from "@/components/sections/FinalCta";
+import { PlanCta, WhyUs } from "@/components/home/HomeSections";
 
 export const metadata = buildMetadata({
   title: "Kenya safaris & sample itineraries",
@@ -21,18 +20,19 @@ export default function SafarisPage() {
   return (
     <>
       <PageHero
-        image={img("game-drive")}
+        size="sm"
         eyebrow="Safaris"
         title="Sample safaris, made to measure"
         intro="Use these as inspiration. Every journey is reshaped around your dates, interests and budget, and priced transparently."
         crumbs={[{ label: "Home", href: "/" }, { label: "Safaris" }]}
       />
-      <section className="section-y bg-cream">
+      <section className="pt-14 pb-20 md:pb-28">
         <div className="container-x">
           <SafariFilters items={items} budgetLabels={budgetLabels} />
         </div>
       </section>
-      <FinalCta title="Don’t see quite the right trip?" text="Most of our travellers start with one of these and end somewhere entirely their own. Tell us what you’re dreaming of." />
+      <WhyUs />
+      <PlanCta title="Don’t see quite the right trip?" text="Most of our travellers start with one of these and end somewhere entirely their own. Tell us what you’re dreaming of." />
     </>
   );
 }

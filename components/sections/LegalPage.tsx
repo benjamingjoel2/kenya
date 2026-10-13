@@ -1,20 +1,40 @@
-import { img } from "@/data/images";
-import { PageHero } from "./PageHero";
+import Link from "next/link";
+import { Breadcrumbs } from "./PageHero";
+import { footerNav } from "@/config/site";
+import { cn } from "@/lib/utils";
 
-export function LegalPage({ title, children }: { title: string; children: React.ReactNode }) {
+/** Legal template (reference): sticky nav between legal pages + content column. */
+export function LegalPage({ title, path, children }: { title: string; path: string; children: React.ReactNode }) {
   return (
-    <>
-      <PageHero size="sm" image={img("mara-plains")} eyebrow="Legal" title={title} crumbs={[{ label: "Home", href: "/" }, { label: title }]} />
-      <section className="section-y bg-cream">
-        <div className="container-x">
-          <div className="prose-safari">
+    <section className="pt-28 pb-20 md:pt-32 md:pb-28">
+      <div className="container-x">
+        <Breadcrumbs crumbs={[{ label: "Home", href: "/" }, { label: title }]} />
+        <h1 className="mt-10 text-h2">{title}</h1>
+        <p className="mt-4 text-sm text-stone">Last updated: placeholder</p>
+        <div className="mt-14 grid gap-10 md:grid-cols-12">
+          <nav aria-label="Legal" className="md:col-span-3">
+            <ul className="flex flex-col gap-2 md:sticky md:top-24">
+              {footerNav.legal.map((l) => (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    aria-current={l.href === path ? "page" : undefined}
+                    className={cn("text-lg transition-colors", l.href === path ? "font-medium text-charcoal" : "text-stone hover:text-charcoal")}
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <div className="prose-safari md:col-span-8 md:col-start-5">
             <p>
               <strong>Placeholder.</strong> This page is a template. Replace it with your own text, reviewed by a qualified legal adviser, before launch.
             </p>
             {children}
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

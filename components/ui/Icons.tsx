@@ -1,6 +1,17 @@
 type P = React.SVGProps<SVGSVGElement>;
 const s = (p: P) => ({ fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, "aria-hidden": true, viewBox: "0 0 24 24", ...p });
 
+/** Four-point concave "spark" used on every button (8×8 grid). */
+export const SparkIcon = (p: P) => (
+  <svg viewBox="0 0 8 8" fill="currentColor" aria-hidden {...p}>
+    <path d="M8 0C8 0 7.32 2.42 7.32 4C7.32 5.58 8 8 8 8C8 8 5.58 7.32 4 7.32C2.42 7.32 0 8 0 8C0 8 .68 5.58 .68 4C.68 2.42 0 0 0 0C0 0 2.42.68 4 .68C5.58.68 8 0 8 0Z" />
+  </svg>
+);
+export const CalendarIcon = (p: P) => (<svg {...s(p)}><rect x="3.5" y="5" width="17" height="15.5" rx="2" /><path d="M3.5 10h17M8 3v4M16 3v4" /></svg>);
+export const UsersIcon = (p: P) => (<svg {...s(p)}><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5M16 4.8a3.5 3.5 0 010 6.4M18 14.8c1.8.7 3 2.4 3.5 5.2" /></svg>);
+export const StarsIcon = (p: P) => (<svg {...s(p)}><path d="M12 3l2.2 5.3 5.8.5-4.4 3.8 1.3 5.6L12 15.3 7.1 18.2l1.3-5.6L4 8.8l5.8-.5L12 3z" /></svg>);
+export const MealIcon = (p: P) => (<svg {...s(p)}><path d="M7 3v8m-2.5-8v5a2.5 2.5 0 005 0V3M7 11v10M17 3c-2 1.5-3 4-3 7h3v11" /></svg>);
+
 export const ArrowIcon = (p: P) => (<svg {...s(p)}><path d="M4 12h15M13 6l6 6-6 6" /></svg>);
 export const ArrowUpRight = (p: P) => (<svg {...s(p)}><path d="M7 17L17 7M8 7h9v9" /></svg>);
 export const CheckIcon = (p: P) => (<svg {...s(p)}><path d="M4.5 12.5l5 5 10-11" /></svg>);

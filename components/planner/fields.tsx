@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 
 export const inputCls =
-  "h-14 w-full rounded-[var(--radius-card)] border border-line bg-white px-4 text-charcoal placeholder:text-stone/60 transition-colors focus:border-charcoal focus:outline-none aria-[invalid=true]:border-shuka";
+  "h-13 w-full rounded-[var(--radius-field)] border border-line bg-paper px-4 text-charcoal placeholder:text-stone/70 transition-colors focus:border-charcoal focus:outline-none aria-[invalid=true]:border-shuka";
 
 export function FieldError({ id, message }: { id: string; message?: string }) {
   if (!message) return null;
@@ -33,7 +33,7 @@ export function Field({
 }) {
   return (
     <div className={className}>
-      <label htmlFor={htmlFor} className="mb-2 block text-sm font-semibold text-charcoal">
+      <label htmlFor={htmlFor} className="mb-2 block text-sm text-stone">
         {label}
       </label>
       {children}
@@ -46,7 +46,7 @@ export function Field({
 export function Fieldset({ legend, error, errorId, children, className }: { legend: string; error?: string; errorId: string; children: React.ReactNode; className?: string }) {
   return (
     <fieldset className={className} aria-describedby={error ? errorId : undefined}>
-      <legend className="mb-3 block text-sm font-semibold text-charcoal">{legend}</legend>
+      <legend className="mb-3 block text-sm text-stone">{legend}</legend>
       {children}
       <FieldError id={errorId} message={error} />
     </fieldset>
@@ -64,7 +64,7 @@ export function ChoiceTile({
   return (
     <label
       className={cn(
-        "relative flex cursor-pointer rounded-[var(--radius-card)] border bg-white transition-all duration-200 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-gold",
+        "relative flex cursor-pointer rounded-[var(--radius-field)] border bg-paper transition-all duration-200 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-gold",
         checked ? "border-charcoal shadow-[0_0_0_1px_var(--color-charcoal)]" : "border-line hover:border-charcoal/40",
         className,
       )}
@@ -105,7 +105,7 @@ export function Stepper({
   hint?: string;
 }) {
   return (
-    <div className="flex items-center justify-between gap-4 rounded-[var(--radius-card)] border border-line bg-white p-4">
+    <div className="flex items-center justify-between gap-4 rounded-[var(--radius-field)] border border-line bg-paper p-4">
       <div>
         <p className="font-semibold text-charcoal">{label}</p>
         {hint && <p className="text-sm text-stone">{hint}</p>}

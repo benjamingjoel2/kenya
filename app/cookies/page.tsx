@@ -5,7 +5,7 @@ export const metadata = buildMetadata({ title: "Cookie policy", description: "Ho
 
 export default function Page() {
   return (
-    <LegalPage title="Cookie policy">
+    <LegalPage title="Cookie policy" path="/cookies">
       <p>How this website uses cookies and similar technologies.</p>
     </LegalPage>
   );

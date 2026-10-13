@@ -26,10 +26,10 @@ export function ContactForm() {
 
   if (done)
     return (
-      <div role="status" className="rounded-[var(--radius-card)] bg-sand/70 p-10">
-        <p className="font-serif text-3xl text-charcoal">Thank you, we’ve got your message.</p>
-        <p className="mt-3 text-stone">A specialist will reply within one working day.</p>
-        <p className="mt-6 font-serif text-4xl italic text-gold-dark">{site.signOff}</p>
+      <div role="status" className="flex flex-col items-start gap-4">
+        <p className="text-h3 text-charcoal">Thank you!</p>
+        <p className="text-lg text-stone">We’ve got your message. A specialist will reply within one working day.</p>
+        <p className="text-2xl font-medium text-gold-dark">{site.signOff}</p>
       </div>
     );
 
@@ -48,8 +48,8 @@ export function ContactForm() {
       </Field>
       {failed && <p role="alert" className="text-sm text-shuka">Sorry, something went wrong. Please try again or message us on WhatsApp.</p>}
       <div>
-        <Button type="submit" arrow disabled={isSubmitting}>
-          {isSubmitting ? "Sending…" : "Send message"}
+        <Button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Sending…" : "Submit"}
         </Button>
       </div>
     </form>
