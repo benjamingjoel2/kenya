@@ -5,7 +5,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { site } from "@/config/site";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/SectionHeading";
-import { BeadDivider } from "@/components/ui/BeadDivider";
 import { CheckIcon } from "@/components/ui/Icons";
 
 export function Newsletter() {
@@ -33,13 +32,13 @@ export function Newsletter() {
   }
 
   return (
-    <section className="section-y bg-acacia text-cream">
-      <div className="container-x grid items-center gap-12 lg:grid-cols-2">
+    <section className="section-y pb-0">
+      <div className="container-x">
+      <div className="grid items-end gap-12 rounded-[var(--radius-card)] bg-acacia p-6 text-cream md:p-10 lg:grid-cols-2">
         <div>
           <Eyebrow tone="light">Free download</Eyebrow>
-          <BeadDivider className="mt-5" />
           <h2 className="mt-6 text-h2 text-white">The Kenya Safari Guide</h2>
-          <p className="mt-5 max-w-lg text-lead text-cream/80">
+          <p className="mt-5 max-w-lg text-lg text-cream/85">
             Our specialists’ month-by-month guide to parks, camps, costs and the questions worth asking. Plus the occasional
             letter from the bush. No spam, ever.
           </p>
@@ -51,14 +50,14 @@ export function Newsletter() {
                 key="done"
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="rounded-[var(--radius-card)] border border-white/20 bg-white/5 p-8"
+                className="rounded-[var(--radius-field)] bg-white/10 p-6"
               >
                 <span className="grid h-12 w-12 place-items-center rounded-full bg-gold text-charcoal">
                   <CheckIcon className="h-6 w-6" />
                 </span>
-                <p className="mt-6 font-serif text-2xl text-white">Your guide is on its way.</p>
+                <p className="mt-6 text-2xl font-medium text-white">Your guide is on its way.</p>
                 <p className="mt-2 text-cream/80">Check your inbox for The Kenya Safari Guide. When you are ready to talk dates, we are here.</p>
-                <p className="mt-6 font-serif text-3xl italic text-gold-light">{site.signOff}</p>
+                <p className="mt-6 text-3xl font-medium text-gold-pale">{site.signOff}</p>
               </motion.div>
             ) : (
               <motion.form key="form" onSubmit={onSubmit} noValidate exit={{ opacity: 0, y: -12 }} className="flex flex-col gap-3">
@@ -76,9 +75,9 @@ export function Newsletter() {
                     aria-invalid={!!error}
                     aria-describedby={error ? `${id}-err` : `${id}-hint`}
                     placeholder="you@example.com"
-                    className="h-14 flex-1 rounded-full border border-white/30 bg-white/10 px-6 text-white placeholder:text-cream/50 focus:border-gold-light focus:outline-none"
+                    className="h-12 flex-1 rounded-[var(--radius-field)] border border-white/25 bg-white/10 px-4 text-white placeholder:text-cream/60 focus:border-gold-light focus:outline-none"
                   />
-                  <Button type="submit" variant="gold" arrow disabled={state === "loading"} className="h-14">
+                  <Button type="submit" variant="light" disabled={state === "loading"} className="h-12">
                     {state === "loading" ? "Sending…" : "Send me the guide"}
                   </Button>
                 </div>
@@ -91,6 +90,7 @@ export function Newsletter() {
             )}
           </AnimatePresence>
         </div>
+      </div>
       </div>
     </section>
   );

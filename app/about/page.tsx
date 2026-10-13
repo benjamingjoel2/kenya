@@ -6,9 +6,7 @@ import { PageHero } from "@/components/sections/PageHero";
 import { SectionHeading, Eyebrow } from "@/components/ui/SectionHeading";
 import { BeadDivider } from "@/components/ui/BeadDivider";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { TrustRow } from "@/components/sections/TrustRow";
-import { WhyUsSection } from "@/components/sections/HomeSections";
-import { FinalCta } from "@/components/sections/FinalCta";
+import { GuestStory, PlanCta, WhyUs } from "@/components/home/HomeSections";
 
 export const metadata = buildMetadata({
   title: "About us: the meaning of safari njema",
@@ -75,7 +73,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <TrustRow />
 
       <section className="section-y bg-cream">
         <div className="container-x">
@@ -92,8 +89,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <WhyUsSection />
-      <FinalCta />
+      <WhyUs />
+      <div className="pt-20 md:pt-28" />
+      <GuestStory />
+      <PlanCta />
     </>
   );
 }

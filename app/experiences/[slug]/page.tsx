@@ -3,15 +3,17 @@ import { experiences, getExperience } from "@/data/experiences";
 import { destinations } from "@/data/destinations";
 import { safaris } from "@/data/safaris";
 import { buildMetadata } from "@/lib/seo";
-import { PageHero } from "@/components/sections/PageHero";
-import { DetailBlock, Pills } from "@/components/sections/DetailBits";
-import { FinalCta } from "@/components/sections/FinalCta";
+import { DetailTemplate, Fact } from "@/components/sections/DetailTemplate";
+import { Pills } from "@/components/sections/DetailBits";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { DestinationCard } from "@/components/cards/DestinationCard";
-import { SafariCard } from "@/components/cards/SafariCard";
-import { ExperienceCard } from "@/components/cards/ExperienceCard";
+import { RevealGroup, RevealItem } from "@/components/ui/Reveal";
+import { ButtonLink } from "@/components/ui/Button";
 import { StartPlanningButton } from "@/components/planner/StartPlanningButton";
+import { SafariRow } from "@/components/cards/SafariRow";
+import { DestinationCard } from "@/components/cards/DestinationCard";
+import { PersonCard } from "@/components/cards/PersonCard";
+import { PlanCta } from "@/components/home/HomeSections";
+import { PinIcon, SunIcon } from "@/components/ui/Icons";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -29,73 +31,72 @@ export default async function ExperiencePage({ params }: Props) {
   const e = getExperience((await params).slug);
   if (!e) notFound();
   const where = destinations.filter((d) => e.destinationSlugs.includes(d.slug));
-  const trips = safaris.filter((s) => s.experienceSlugs.includes(e.slug)).slice(0, 3);
-  const more = experiences.filter((x) => x.slug !== e.slug && x.destinationSlugs.some((d) => e.destinationSlugs.includes(d))).slice(0, 3);
+  const trips = safaris.filter((s) => s.experienceSlugs.includes(e.slug)).slice(0, 2);
+  const more = experiences.filter((x) => x.slug !== e.slug && x.destinationSlugs.some((d) => e.destinationSlugs.includes(d))).slice(0, 4);
 
   return (
     <>
-      <PageHero
-        size="lg"
-        image={e.hero}
-        eyebrow="Experience"
-        title={e.name}
-        intro={e.tagline}
+      <DetailTemplate
         crumbs={[{ label: "Home", href: "/" }, { label: "Experiences", href: "/experiences" }, { label: e.name }]}
-      >
-        <div className="mt-10">
-          <StartPlanningButton variant="gold" arrow>
-            Add this to my trip
-          </StartPlanningButton>
-        </div>
-      </PageHero>
-
-      <div className="container-x">
-        <DetailBlock eyebrow="The experience" title={e.summary}>
-          <Reveal className="flex flex-col gap-6 text-lead text-ink/85">
-            {e.body.map((p) => (
-              <p key={p.slice(0, 24)}>{p}</p>
-            ))}
-          </Reveal>
-        </DetailBlock>
-        <DetailBlock eyebrow="Good to know" title="When & who">
-          <dl className="grid gap-8 md:grid-cols-2">
-            <div>
-              <dt className="eyebrow text-stone">Season</dt>
-              <dd className="mt-3 text-lg text-charcoal">{e.season}</dd>
-            </div>
-            <div>
-              <dt className="eyebrow text-stone">Best for</dt>
-              <dd className="mt-3">
-                <Pills items={e.bestFor} />
-              </dd>
-            </div>
-          </dl>
-        </DetailBlock>
-      </div>
-
-      {where.length > 0 && (
-        <section className="section-y bg-sand/60">
-          <div className="container-x">
-            <SectionHeading eyebrow="Where" title="Where to do it" />
-            <RevealGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {where.map((d) => (
-                <RevealItem key={d.slug}>
-                  <DestinationCard destination={d} />
-                </RevealItem>
-              ))}
-            </RevealGroup>
-          </div>
-        </section>
-      )}
+        eyebrow="Experience"
+        title={
+          <>
+            {e.name}
+            <span className="block text-stone">{e.tagline}</span>
+          </>
+        }
+        photos={[e.hero, ...where.map((d) => d.hero)]}
+        sidebar={{
+          head: <p className="text-h4 text-charcoal">{e.name}</p>,
+          facts: (
+            <>
+              <Fact icon={SunIcon}>{e.season}</Fact>
+              <Fact icon={PinIcon}>{where.map((d) => d.name).join(", ")}</Fact>
+            </>
+          ),
+          cta: (
+            <StartPlanningButton variant="primary" className="w-full">
+              Add this to my trip
+            </StartPlanningButton>
+          ),
+        }}
+        sections={[
+          {
+            id: "about",
+            label: "The experience",
+            title: e.summary,
+            content: (
+              <div className="flex flex-col gap-5 text-lg text-stone">
+                {e.body.map((p) => (
+                  <p key={p.slice(0, 24)}>{p}</p>
+                ))}
+              </div>
+            ),
+          },
+          { id: "best-for", label: "Best for", title: "Best for", content: <Pills items={e.bestFor} /> },
+          {
+            id: "where",
+            label: "Where",
+            title: "Where to do it",
+            content: (
+              <div className="grid gap-2 sm:grid-cols-2">
+                {where.map((d) => (
+                  <DestinationCard key={d.slug} destination={d} sizes="(min-width: 1024px) 30vw, 100vw" />
+                ))}
+              </div>
+            ),
+          },
+        ]}
+      />
 
       {trips.length > 0 && (
-        <section className="section-y bg-cream">
+        <section className="section-y bg-sand/50">
           <div className="container-x">
-            <SectionHeading eyebrow="Itineraries" title="Safaris that include it" />
-            <RevealGroup className="mt-12 grid gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
+            <SectionHeading align="split" eyebrow="Itineraries" title="Safaris that include it" action={<ButtonLink href="/safaris" variant="outline">See all</ButtonLink>} />
+            <RevealGroup className="mt-14 flex flex-col gap-4">
               {trips.map((s) => (
                 <RevealItem key={s.slug}>
-                  <SafariCard safari={s} />
+                  <SafariRow safari={s} />
                 </RevealItem>
               ))}
             </RevealGroup>
@@ -104,13 +105,13 @@ export default async function ExperiencePage({ params }: Props) {
       )}
 
       {more.length > 0 && (
-        <section className="section-y bg-charcoal">
+        <section className="section-y">
           <div className="container-x">
-            <SectionHeading tone="light" eyebrow="Pair it with" title="More experiences" />
-            <RevealGroup className="mt-12 grid auto-rows-[22rem] gap-5 md:grid-cols-3">
+            <SectionHeading eyebrow="Pair it with" title="More experiences" />
+            <RevealGroup className="mt-14 grid grid-cols-2 gap-2 lg:grid-cols-4">
               {more.map((x) => (
                 <RevealItem key={x.slug}>
-                  <ExperienceCard experience={x} className="h-full" />
+                  <PersonCard href={`/experiences/${x.slug}`} image={x.hero} title={x.name} subtitle={x.season} info={<p className="line-clamp-6">{x.summary}</p>} />
                 </RevealItem>
               ))}
             </RevealGroup>
@@ -118,7 +119,7 @@ export default async function ExperiencePage({ params }: Props) {
         </section>
       )}
 
-      <FinalCta />
+      <PlanCta />
     </>
   );
 }

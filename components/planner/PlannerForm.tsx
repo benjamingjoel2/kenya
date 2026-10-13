@@ -168,11 +168,11 @@ export function PlannerForm({ variant = "page" }: { variant?: "page" | "modal" }
             <span className="text-sm text-stone">Takes about 3 minutes · progress saved automatically</span>
           )}
           {isLast ? (
-            <Button type="submit" variant="primary" arrow disabled={status === "submitting"}>
+            <Button type="submit" variant="primary" disabled={status === "submitting"}>
               {status === "submitting" ? "Sending…" : "Send to my specialist"}
             </Button>
           ) : (
-            <Button type="submit" variant="primary" arrow>
+            <Button type="submit" variant="primary">
               Continue
             </Button>
           )}

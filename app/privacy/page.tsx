@@ -5,7 +5,7 @@ export const metadata = buildMetadata({ title: "Privacy policy", description: "H
 
 export default function Page() {
   return (
-    <LegalPage title="Privacy policy">
+    <LegalPage title="Privacy policy" path="/privacy">
       <p>How Safari Njema collects, uses and protects your personal information.</p>
     </LegalPage>
   );

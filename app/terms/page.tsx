@@ -5,7 +5,7 @@ export const metadata = buildMetadata({ title: "Booking terms", description: "Th
 
 export default function Page() {
   return (
-    <LegalPage title="Booking terms">
+    <LegalPage title="Booking terms" path="/terms">
       <p>The terms that apply when you book a safari with Safari Njema.</p>
     </LegalPage>
   );

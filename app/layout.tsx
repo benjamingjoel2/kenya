@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { site } from "@/config/site";
 import { Header } from "@/components/layout/Header";
@@ -9,13 +9,7 @@ import { CurrencyProvider } from "@/components/layout/CurrencyProvider";
 import { PlannerProvider } from "@/components/planner/PlannerProvider";
 import { MotionProvider } from "@/components/layout/MotionProvider";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
-  display: "swap",
-  style: ["normal", "italic"],
-});
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap", weight: ["300", "400", "500", "600", "700"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -29,7 +23,7 @@ export const viewport: Viewport = { themeColor: "#1e1c1a" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
+    <html lang="en" className={inter.variable}>
       <body>
         <a
           href="#main"

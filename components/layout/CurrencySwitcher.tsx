@@ -34,10 +34,8 @@ export function CurrencySwitcher({ tone = "dark", className, placement = "down" 
         aria-label={`Currency: ${currency}. Change currency`}
         onClick={() => setOpen((o) => !o)}
         className={cn(
-          "flex items-center gap-1.5 rounded-full border px-3 py-2 text-[0.8125rem] font-medium tracking-wide transition-colors",
-          tone === "light"
-            ? "border-white/35 text-white hover:border-white"
-            : "border-charcoal/20 text-charcoal hover:border-charcoal",
+          "flex h-11 items-center gap-1.5 rounded-full px-4 text-[0.875rem] font-medium transition-colors",
+          tone === "light" ? "bg-white/15 text-white hover:bg-white/25" : "bg-charcoal/[0.06] text-charcoal hover:bg-charcoal/[0.12]",
         )}
       >
         <span aria-hidden>{currencies[currency].symbol}</span>
@@ -56,7 +54,7 @@ export function CurrencySwitcher({ tone = "dark", className, placement = "down" 
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: placement === "up" ? 6 : -6 }}
             transition={{ duration: 0.18 }}
-            className={cn("absolute z-50 w-52", placement === "up" ? "bottom-full left-0 mb-2" : "right-0 mt-2", " overflow-hidden rounded-md border border-line bg-cream py-1 text-charcoal shadow-xl")}
+            className={cn("absolute z-50 w-52", placement === "up" ? "bottom-full left-0 mb-2" : "right-0 mt-2", " overflow-hidden rounded-[var(--radius-field)] border border-line bg-paper py-1 text-charcoal shadow-xl")}
           >
             {(Object.keys(currencies) as CurrencyCode[]).map((code) => (
               <li key={code} role="option" aria-selected={code === currency}>

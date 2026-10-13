@@ -46,6 +46,11 @@ export const site = {
 
   /** Optional hero background video (mp4). Leave empty to use the hero image. */
   heroVideo: "",
+  /**
+   * Foreground cut-out layered in front of the giant hero word. Replace with a
+   * transparent PNG cut from your hero photo (e.g. the acacia + ridge line).
+   */
+  heroForeground: "/hero/foreground.svg",
 } as const;
 
 export const nav = [
