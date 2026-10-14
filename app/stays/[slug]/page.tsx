@@ -21,7 +21,8 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props) {
   const s = getStay((await params).slug);
   if (!s) return {};
-  return buildMetadata({ title: `${s.name}, ${s.location}`, description: s.summary, path: `/stays/${s.slug}`, image: s.hero.src });
+  const dest = getDestination(s.destinationSlug);
+  return buildMetadata({ title: dest ? `${s.name}, ${dest.name}` : s.name, description: s.summary, path: `/stays/${s.slug}`, image: s.hero.src });
 }
 
 export default async function StayPage({ params }: Props) {

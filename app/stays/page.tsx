@@ -1,3 +1,4 @@
+import { img } from "@/data/images";
 import { stays, stayTypeLabels } from "@/data/stays";
 import type { StayType } from "@/data/types";
 import { buildMetadata } from "@/lib/seo";
@@ -10,6 +11,7 @@ export const metadata = buildMetadata({
   title: "Safari camps, lodges & beach villas",
   description: "Tented camps, conservancy lodges, beach villas and Lamu houses we know personally, from the Masai Mara to the Kenya coast.",
   path: "/stays",
+  image: img("tented-camp").src,
 });
 
 const order: StayType[] = ["tented-camp", "conservancy-lodge", "beach-villa", "lamu-house"];

@@ -3,12 +3,14 @@ import Link from "next/link";
 import type { Img } from "@/data/types";
 import { Eyebrow } from "@/components/ui/SectionHeading";
 import { cn } from "@/lib/utils";
+import { JsonLd, breadcrumbLd } from "@/lib/seo";
 
 export type Crumb = { label: string; href?: string };
 
 export function Breadcrumbs({ crumbs }: { crumbs: Crumb[] }) {
   return (
     <nav aria-label="Breadcrumb">
+      <JsonLd data={breadcrumbLd(crumbs)} />
       <ol className="flex flex-wrap items-center gap-2 text-[0.8125rem]">
         {crumbs.map((c, i) => (
           <li key={c.label} className="flex items-center gap-2">

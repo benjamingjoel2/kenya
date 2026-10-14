@@ -16,13 +16,16 @@ export const metadata: Metadata = {
   description: site.description,
   applicationName: site.name,
   openGraph: { siteName: site.name, locale: site.locale, type: "website" },
+  keywords: ["Kenya safari", "tailor-made safari", "Masai Mara safari", "Great Migration", "Kenya bush and beach", "luxury Kenya safari", "Kenya safari specialist"],
+  formatDetection: { telephone: false, email: false, address: false },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
 };
 
 export const viewport: Viewport = { themeColor: "#1e1c1a" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en-GB" className={inter.variable}>
       <body>
         <a
           href="#main"

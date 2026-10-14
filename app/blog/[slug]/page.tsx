@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props) {
   const post = getPost((await params).slug);
   if (!post) return {};
   const m = post.meta;
-  return buildMetadata({ title: m.title, description: m.excerpt, path: `/blog/${m.slug}`, image: m.cover.src, type: "article" });
+  return buildMetadata({ title: m.seoTitle ?? m.title, description: m.excerpt, path: `/blog/${m.slug}`, image: m.cover.src, type: "article", publishedTime: m.date });
 }
 
 const components = {

@@ -2,7 +2,8 @@ import { notFound } from "next/navigation";
 import { destinations, getDestination } from "@/data/destinations";
 import { safaris } from "@/data/safaris";
 import { stays } from "@/data/stays";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, JsonLd } from "@/lib/seo";
+import { site } from "@/config/site";
 import { DetailTemplate, Fact } from "@/components/sections/DetailTemplate";
 import { MonthGrid } from "@/components/sections/MonthGrid";
 import { FaqList } from "@/components/sections/FaqList";
@@ -106,6 +107,18 @@ export default async function DestinationPage({ params }: Props) {
 
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "TouristDestination",
+          name: `${d.name}, Kenya`,
+          description: d.summary,
+          url: `${site.url}/destinations/${d.slug}`,
+          image: [d.hero.src, ...d.gallery.map((g) => g.src)],
+          containedInPlace: { "@type": "Country", name: "Kenya" },
+          touristType: d.highlights,
+        }}
+      />
       <DetailTemplate
         crumbs={[{ label: "Home", href: "/" }, { label: "Destinations", href: "/destinations" }, { label: d.name }]}
         eyebrow={kindLabel[d.kind]}

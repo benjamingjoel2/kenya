@@ -12,6 +12,7 @@ export const metadata = buildMetadata({
   title: "Kenya safari destinations",
   description: "From the Masai Mara and Amboseli to Samburu, Laikipia and the Indian Ocean coast: explore Kenya's best safari and beach destinations.",
   path: "/destinations",
+  image: img("elephant-kilimanjaro").src,
 });
 
 const groups = [
