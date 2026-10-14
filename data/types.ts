@@ -103,4 +103,6 @@ export interface PostMeta {
   cover: Img;
   tags: string[];
   readingTime: string;
+  /** Optional shorter <title> for search results (falls back to title). */
+  seoTitle?: string;
 }

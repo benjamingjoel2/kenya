@@ -23,7 +23,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props) {
   const s = getSafari((await params).slug);
   if (!s) return {};
-  return buildMetadata({ title: `${s.title}: ${s.nights}-night Kenya safari`, description: s.summary.split(". ")[0] + ".", path: `/safaris/${s.slug}`, image: s.hero.src });
+  return buildMetadata({
+    title: /safari/i.test(s.title) ? s.title : `${s.title} safari`,
+    description: `${s.nights}-night tailor-made Kenya safari: ${s.regions.join(", ")}. ${s.summary}`,
+    path: `/safaris/${s.slug}`,
+    image: s.hero.src,
+  });
 }
 
 export default async function SafariPage({ params }: Props) {

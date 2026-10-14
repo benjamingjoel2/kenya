@@ -1,3 +1,4 @@
+import { img } from "@/data/images";
 import { safaris, budgetLabels } from "@/data/safaris";
 import { getDestination } from "@/data/destinations";
 import type { RegionId } from "@/data/types";
@@ -10,6 +11,7 @@ export const metadata = buildMetadata({
   title: "Kenya safaris & sample itineraries",
   description: "Tailor-made Kenya safari itineraries: Masai Mara, Amboseli, Laikipia, Samburu, bush & beach and gorilla extensions. Filter by region, length and budget.",
   path: "/safaris",
+  image: img("game-drive").src,
 });
 
 export default function SafarisPage() {

@@ -14,6 +14,7 @@ export const metadata = buildMetadata({
   title: "Journal: Kenya safari advice & stories",
   description: "Practical, honest advice from our Kenya safari specialists: when to go, where to stay, the Great Migration, conservancies and bush & beach planning.",
   path: "/blog",
+  image: img("binoculars").src,
 });
 
 export default function BlogPage() {
