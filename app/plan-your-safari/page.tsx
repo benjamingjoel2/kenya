@@ -9,6 +9,7 @@ export const metadata = buildMetadata({
   title: "Plan your safari",
   description: "Tell us about your dream Kenya safari in five short steps. A dedicated specialist will reply within one working day.",
   path: "/plan-your-safari",
+  image: img("balloon-sunrise").src,
 });
 
 const promises = [

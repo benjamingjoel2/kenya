@@ -11,6 +11,7 @@ export const metadata = buildMetadata({
   title: "Contact us",
   description: "Talk to a Kenya safari specialist by email, phone or WhatsApp. We reply within one working day.",
   path: "/contact",
+  image: img("lamu-dhow").src,
 });
 
 /** Split layout (reference contacts page): tall image left, head + form right. */

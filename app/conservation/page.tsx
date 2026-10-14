@@ -10,6 +10,7 @@ export const metadata = buildMetadata({
   title: "Conservation & community",
   description: "How Safari Njema travel supports Kenya's wildlife conservancies, community landowners and the people who protect them.",
   path: "/conservation",
+  image: img("conservation").src,
 });
 
 const pillars = [

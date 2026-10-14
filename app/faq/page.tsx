@@ -11,6 +11,7 @@ export const metadata = buildMetadata({
   title: "Kenya safari FAQ",
   description: "Kenya eTA, park fees, vaccinations and malaria, the Great Migration, conservancies, luggage limits, safety, tipping and what to pack, answered by our specialists.",
   path: "/faq",
+  image: img("game-drive").src,
 });
 
 const categories: { id: FaqCategory; title: string }[] = [

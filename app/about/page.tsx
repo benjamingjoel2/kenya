@@ -12,6 +12,7 @@ export const metadata = buildMetadata({
   title: "About us: the meaning of safari njema",
   description: "Safari Njema is a small team of Kenya specialists. One dedicated person plans and looks after your journey, from first message to the day you fly home.",
   path: "/about",
+  image: img("sundowner").src,
 });
 
 const steps = [
