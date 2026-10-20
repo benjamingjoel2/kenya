@@ -21,6 +21,7 @@ function read(slug: string) {
     author: fm.author,
     tags: fm.tags ?? [],
     readingTime: fm.readingTime,
+    ...(fm.seoTitle ? { seoTitle: fm.seoTitle } : {}),
     cover: img(fm.coverKey),
   };
   return { meta, content };

@@ -8,8 +8,9 @@ import { FinalCta } from "@/components/sections/FinalCta";
 
 export const metadata = buildMetadata({
   title: "Traveller stories",
-  description: "What travellers say about planning a Kenya safari with Safari Njema.",
+  description: "What travellers say about planning a tailor-made Kenya safari with Safari Njema: one dedicated specialist, from first message to the day you fly home.",
   path: "/testimonials",
+  image: img("bush-dinner").src,
 });
 
 export default function TestimonialsPage() {

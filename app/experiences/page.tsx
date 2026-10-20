@@ -1,3 +1,4 @@
+import { img } from "@/data/images";
 import { experiences } from "@/data/experiences";
 import { buildMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/sections/PageHero";
@@ -9,6 +10,7 @@ export const metadata = buildMetadata({
   title: "Kenya safari experiences",
   description: "The Great Migration, hot air balloons, walking and horseback safaris, rhino tracking, Lamu dhows, gorilla trekking and more, woven into your Kenya journey.",
   path: "/experiences",
+  image: img("balloon-sunrise").src,
 });
 
 export default function ExperiencesPage() {
