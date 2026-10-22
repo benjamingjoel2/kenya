@@ -7,8 +7,9 @@ export async function POST(req: Request) {
   if (!parsed.success) {
     return NextResponse.json({ ok: false, errors: parsed.error.flatten().fieldErrors }, { status: 400 });
   }
-  const enquiry = { ...parsed.data, receivedAt: new Date().toISOString(), source: "trip-planner" };
-  console.log("[plan-your-safari] new enquiry", JSON.stringify(enquiry, null, 2));
-  // TODO: forward to email (e.g. Resend/Postmark) and CRM (e.g. HubSpot/Pipedrive), and send the traveller an auto-reply.
+  // Never log the enquiry itself: names, emails and phone numbers would end up in the hosting logs.
+  console.info("[plan-your-safari] new enquiry received");
+  // TODO: forward { ...parsed.data, receivedAt: new Date().toISOString(), source: "trip-planner" } to email
+  // (e.g. Resend/Postmark) and CRM (e.g. HubSpot/Pipedrive), and send the traveller an auto-reply.
   return NextResponse.json({ ok: true });
 }
