@@ -44,7 +44,12 @@ export const site = {
     parksCovered: 20,
   },
 
-  /** Optional hero background video (mp4). Leave empty to use the hero image. */
+  /**
+   * Optional hero background video (mp4). Leave empty to use the hero image.
+   * Host it on this site (public/): the Content-Security-Policy in next.config.ts
+   * only allows media from 'self'. Its poster loads straight from Unsplash, so
+   * update /cookies if you turn this on.
+   */
   heroVideo: "",
   /**
    * Foreground cut-out layered in front of the giant hero word. Replace with a

@@ -31,7 +31,7 @@ data/images.ts        Central image registry (one line per photo)
 content/blog/*.mdx    Journal posts (frontmatter + Markdown)
 app/                  Routes (pages generated from /data via generateStaticParams)
 components/           layout/ · ui/ · cards/ · sections/ · planner/
-app/api/*             plan, newsletter, contact (log payloads; TODOs for email/CRM)
+app/api/*             plan, newsletter, contact (TODOs for email/CRM)
 ```
 
 Every page is generated from `/data` and `/content`, so moving to a CMS means swapping those modules for API calls. The types in `data/types.ts` are the contract.
@@ -45,9 +45,9 @@ Every page is generated from `/data` and `/content`, so moving to a CMS means sw
 - **Testimonials**: all are marked as placeholders (`data/testimonials.ts`) and labelled on the site.
 - **Stays**: fictional sample properties (`data/stays.ts`).
 - **FAQ facts** (eTA, KWS cashless payments, health, tipping guidance): review them with your team.
-- **Legal pages** (`/privacy`, `/terms`, `/cookies`) are stubs.
+- **Legal pages**: `/privacy` and `/cookies` are drafts with [BRACKETED] details to complete and a legal review to do; `/terms` is still a stub.
 - **Map**: `components/sections/MapPlaceholder.tsx` is a stylised placeholder.
-- **API routes**: `app/api/plan`, `newsletter` and `contact` currently `console.log` the payload. Wire them up to email/CRM (see the TODOs).
+- **API routes**: `app/api/plan`, `newsletter` and `contact` validate the payload and then discard it (they never log personal data). Wire them up to email/CRM (see the TODOs).
 
 ## Features
 

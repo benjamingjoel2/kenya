@@ -46,6 +46,13 @@ export function ContactForm() {
       <Field label="How can we help?" htmlFor="c-message" error={errors.message?.message} errorId="c-message-err">
         <textarea id="c-message" rows={6} className={cn(inputCls, "h-auto py-3")} aria-invalid={!!errors.message} aria-describedby={errors.message ? "c-message-err" : undefined} {...register("message")} />
       </Field>
+      <p className="text-sm text-stone">
+        We’ll use your details only to reply to your message. See our{" "}
+        <a href="/privacy" className="underline underline-offset-2">
+          privacy policy
+        </a>
+        .
+      </p>
       {failed && <p role="alert" className="text-sm text-shuka">Sorry, something went wrong. Please try again or message us on WhatsApp.</p>}
       <div>
         <Button type="submit" disabled={isSubmitting}>

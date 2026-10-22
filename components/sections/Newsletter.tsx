@@ -75,7 +75,7 @@ export function Newsletter() {
                     aria-invalid={!!error}
                     aria-describedby={error ? `${id}-err` : `${id}-hint`}
                     placeholder="you@example.com"
-                    className="h-12 flex-1 rounded-[var(--radius-field)] border border-white/25 bg-white/10 px-4 text-white placeholder:text-cream/60 focus:border-gold-light focus:outline-none"
+                    className="h-12 w-full rounded-[var(--radius-field)] border border-white/25 sm:w-auto sm:flex-1 bg-white/10 px-4 text-white placeholder:text-cream/60 focus:border-gold-light focus:outline-none"
                   />
                   <Button type="submit" variant="light" disabled={state === "loading"} className="h-12">
                     {state === "loading" ? "Sending…" : "Send me the guide"}
@@ -84,7 +84,12 @@ export function Newsletter() {
                 {error ? (
                   <p id={`${id}-err`} className="text-sm text-[#ffb4a8]">{error}</p>
                 ) : (
-                  <p id={`${id}-hint`} className="text-sm text-cream/85">We’ll only use your email to send the guide and our occasional letter. Unsubscribe anytime.</p>
+                  <p id={`${id}-hint`} className="text-sm text-cream/85">We’ll only use your email to send the guide and our occasional letter. Unsubscribe anytime. See our{" "}
+                    <a href="/privacy" className="underline underline-offset-2">
+                      privacy policy
+                    </a>
+                    .
+                  </p>
                 )}
               </motion.form>
             )}
