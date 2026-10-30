@@ -37,7 +37,9 @@ export function buildMetadata({
   const url = new URL(path, site.url).toString();
   const desc = clamp(description, MAX_DESC);
   const fullTitle = title ? (title.length + SUFFIX.length <= MAX_TITLE ? `${title}${SUFFIX}` : title) : `${site.name} · ${site.tagline}`;
-  const images = [image ? { url: image, width: 1200, height: 630 } : { url: "/opengraph-image", width: 1200, height: 630, alt: `${site.name}: ${site.tagline}` }];
+  // Illustrated placeholders (SVG) are not valid share images: fall back to the generated one.
+  const shareable = image && !image.startsWith("/placeholders/");
+  const images = [shareable ? { url: image, width: 1200, height: 630 } : { url: "/opengraph-image", width: 1200, height: 630, alt: `${site.name}: ${site.tagline}` }];
   return {
     title: { absolute: fullTitle },
     description: desc,

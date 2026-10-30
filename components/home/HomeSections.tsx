@@ -1,11 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { site, whatsappHref } from "@/config/site";
+import { site } from "@/config/site";
 import { destinations, getDestination } from "@/data/destinations";
 import { safaris } from "@/data/safaris";
 import { experiences } from "@/data/experiences";
 import { stays, stayTypeLabels } from "@/data/stays";
-import { featuredTestimonial } from "@/data/testimonials";
 import { img } from "@/data/images";
 import type { PostMeta } from "@/data/types";
 import { SectionHeading, Eyebrow } from "@/components/ui/SectionHeading";
@@ -18,10 +17,9 @@ import { SafariRow } from "@/components/cards/SafariRow";
 import { PersonCard } from "@/components/cards/PersonCard";
 import { DestinationCard } from "@/components/cards/DestinationCard";
 import { PostCard } from "@/components/cards/PostCard";
-import { PlaceholderBadge } from "@/components/cards/TestimonialCard";
 import { Carousel } from "@/components/ui/Carousel";
 import { StartPlanningButton } from "@/components/planner/StartPlanningButton";
-import { ChatIcon, MapIcon, PlusIcon, ScaleIcon, UserIcon, WhatsAppIcon } from "@/components/ui/Icons";
+import { ChatIcon, MapIcon, PlusIcon, ScaleIcon, UserIcon } from "@/components/ui/Icons";
 import { KenyaDotMap } from "./KenyaDotMap";
 
 /* 2 · Statistic: destination families with full-bleed hairlines (reference "statistic"). */
@@ -120,13 +118,7 @@ export function AboutSection() {
                     <br /> &amp; lodges, personally visited
                   </p>
                 </div>
-                <ul className="flex flex-wrap gap-2" aria-label="Memberships (placeholders)">
-                  {site.memberships.slice(0, 3).map((m) => (
-                    <li key={m.short} title={m.label} className="grid h-10 place-items-center rounded-full border border-dashed border-charcoal/25 px-4 text-xs font-semibold tracking-widest text-stone">
-                      {m.short}
-                    </li>
-                  ))}
-                </ul>
+                <p className="text-sm text-stone">Matched to your dates, your budget and the way you like to travel.</p>
               </RevealItem>
             </RevealGroup>
           </div>
@@ -329,7 +321,7 @@ export function ExperiencesSection() {
 const why = [
   { icon: UserIcon, t: "One dedicated specialist", d: "The person who plans your trip is the person you message, start to finish. No hand-offs." },
   { icon: ScaleIcon, t: "Fair, transparent pricing", d: "Clear, itemised quotes with park fees and flights included. No hidden extras." },
-  { icon: ChatIcon, t: "24/7 WhatsApp support", d: "A real person on the end of the line while you are travelling." },
+  { icon: ChatIcon, t: "Support while you travel", d: "A real person looking after your trip from the day you leave to the day you fly home." },
   { icon: MapIcon, t: `${site.stats.parksCovered}+ parks & regions`, d: "From the Mara to Samburu, Laikipia, Tsavo and the coast." },
 ];
 
@@ -411,37 +403,6 @@ export function StayPersonCard({ slug, compact = true }: { slug: string; compact
   );
 }
 
-/* 10 · Guest story: featured (placeholder) testimonial. */
-export function GuestStory() {
-  const t = featuredTestimonial;
-  const photo = img("sundowner");
-  return (
-    <section className="section-y pt-0">
-      <div className="container-x grid gap-2 md:grid-cols-12">
-        <Reveal className="flex flex-col justify-between gap-10 rounded-[var(--radius-card)] bg-paper p-6 md:col-span-7 md:p-10">
-          <div className="flex items-center justify-between gap-4">
-            <Eyebrow>Guest stories</Eyebrow>
-            <PlaceholderBadge />
-          </div>
-          <blockquote className="text-h4 tracking-[-0.02em] text-charcoal">“{t.quote}”</blockquote>
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <p className="text-sm text-stone">
-              <span className="font-medium text-charcoal">{t.name}</span> · {t.from}
-              <span className="block">{t.trip}</span>
-            </p>
-            <ButtonLink href="/testimonials" variant="outline">
-              More stories
-            </ButtonLink>
-          </div>
-        </Reveal>
-        <Reveal delay={0.1} className="relative min-h-[22rem] overflow-hidden rounded-[var(--radius-card)] md:col-span-5">
-          <Image src={photo.src} alt={photo.alt} fill sizes="(min-width: 768px) 40vw, 100vw" className="object-cover" />
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
 /* 11 · Journal. */
 export function JournalSection({ posts }: { posts: PostMeta[] }) {
   if (!posts.length) return null;
@@ -488,10 +449,8 @@ export function PlanCta({ title = "Plan your safari", text }: { title?: string; 
             <ButtonLink href="/plan-your-safari" variant="primary">
               Plan your safari
             </ButtonLink>
-            <ButtonLink href={whatsappHref()} variant="outline">
-              <span className="inline-flex items-center gap-2">
-                <WhatsAppIcon className="h-4 w-4" /> Chat on WhatsApp
-              </span>
+            <ButtonLink href="/contact" variant="outline">
+              Contact us
             </ButtonLink>
           </div>
         </Reveal>

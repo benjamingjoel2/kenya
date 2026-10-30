@@ -9,7 +9,6 @@ import {
   DestinationStats,
   ExperiencesSection,
   FeaturedSafaris,
-  GuestStory,
   JournalSection,
   PlanCta,
   StaysSection,
@@ -41,15 +40,13 @@ export default function Home() {
             url: site.url,
             logo: `${site.url}/icon.svg`,
             image: `${site.url}/opengraph-image`,
-            telephone: site.contact.phone,
             email: site.contact.email,
-            address: { "@type": "PostalAddress", addressLocality: "Nairobi", addressRegion: "Nairobi", addressCountry: "KE" },
+            address: { "@type": "PostalAddress", ...site.contact.postalAddress },
             areaServed: { "@type": "Country", name: "Kenya" },
             knowsAbout: ["Kenya safaris", "Masai Mara", "Great Migration", "Private conservancies", "Bush and beach holidays"],
             contactPoint: [
-              { "@type": "ContactPoint", contactType: "customer service", telephone: site.contact.phone, email: site.contact.email, availableLanguage: ["English", "Swahili"] },
+              { "@type": "ContactPoint", contactType: "customer service", email: site.contact.email, availableLanguage: ["English", "Swahili"] },
             ],
-            sameAs: site.socials.map((s) => s.href),
           },
         ]}
       />
@@ -62,7 +59,6 @@ export default function Home() {
       <ExperiencesSection />
       <WhyUs />
       <StaysSection />
-      <GuestStory />
       <JournalSection posts={getAllPosts()} />
       <Newsletter />
       <PlanCta />

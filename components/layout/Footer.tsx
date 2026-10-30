@@ -1,10 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { footerNav, mailtoHref, site, whatsappHref } from "@/config/site";
+import { footerNav, mailtoHref, site } from "@/config/site";
 import { img } from "@/data/images";
 import { Logo } from "./Logo";
 import { Notch } from "@/components/ui/Notch";
-import { ArrowUpRight } from "@/components/ui/Icons";
 
 const bigLinks = [
   { label: "Destinations", href: "/destinations" },
@@ -44,18 +43,8 @@ export function Footer() {
               </ul>
               <ul className="flex flex-col gap-3 text-xl">
                 <li>
-                  <a href={site.contact.phoneHref} className="hover:text-gold-light">
-                    {site.contact.phone}
-                  </a>
-                </li>
-                <li>
                   <a href={mailtoHref} className="hover:text-gold-light">
                     {site.contact.email}
-                  </a>
-                </li>
-                <li>
-                  <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="hover:text-gold-light">
-                    WhatsApp {site.contact.whatsappDisplay}
                   </a>
                 </li>
                 <li className="pt-2 text-sm text-white/60">{site.contact.address}</li>
@@ -91,32 +80,13 @@ export function Footer() {
               </div>
             </div>
             <div className="md:col-span-6">
-              <h2 className="mb-4 text-[0.8125rem] font-medium tracking-normal text-white/60">Follow</h2>
-              <ul className="flex flex-wrap gap-2">
-                {site.socials.map((s) => (
-                  <li key={s.label}>
-                    <a
-                      href={s.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex h-10 items-center gap-1.5 rounded-full bg-white/10 px-4 text-sm text-white hover:bg-white/20"
-                    >
-                      {s.label}
-                      <ArrowUpRight className="h-3.5 w-3.5" />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-              <h2 className="mt-8 mb-4 text-[0.8125rem] font-medium tracking-normal text-white/60">Memberships &amp; partners</h2>
-              <ul className="flex flex-wrap gap-2">
-                {site.memberships.map((m) => (
-                  <li
-                    key={m.short}
-                    title={m.label}
-                    className="grid h-12 min-w-16 place-items-center rounded-[var(--radius-field)] border border-dashed border-white/30 px-4 text-sm font-semibold tracking-widest text-white/75"
-                  >
-                    <span className="sr-only">{m.label}</span>
-                    <span aria-hidden>{m.short}</span>
+              <h2 className="mb-4 text-[0.8125rem] font-medium tracking-normal text-white/60">Legal</h2>
+              <ul className="flex flex-col gap-2 text-sm">
+                {footerNav.legal.map((l) => (
+                  <li key={l.href}>
+                    <Link href={l.href} className="text-white/85 hover:text-white">
+                      {l.label}
+                    </Link>
                   </li>
                 ))}
               </ul>

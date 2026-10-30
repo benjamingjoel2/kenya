@@ -6,7 +6,7 @@ import { PageHero } from "@/components/sections/PageHero";
 import { SectionHeading, Eyebrow } from "@/components/ui/SectionHeading";
 import { BeadDivider } from "@/components/ui/BeadDivider";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { GuestStory, PlanCta, WhyUs } from "@/components/home/HomeSections";
+import { PlanCta, WhyUs } from "@/components/home/HomeSections";
 
 export const metadata = buildMetadata({
   title: "About us: the meaning of safari njema",
@@ -20,7 +20,7 @@ const steps = [
   { t: "Ideas, not a package", d: "Your specialist sketches one or two routes with honest pros and cons, and a clear, itemised quote." },
   { t: "Refined together", d: "We adjust camps, pace and budget until it feels exactly right. No pressure, no deadlines we didn't agree." },
   { t: "Every detail handled", d: "Park fees, flights, transfers, eTA guidance and packing notes. Then a travel pack you can actually use." },
-  { t: "Looked after on the ground", d: "Meet-and-greet in Nairobi, vetted guides, and 24/7 WhatsApp support from someone who knows your trip." },
+  { t: "Looked after on the ground", d: "Meet-and-greet in Nairobi, vetted guides, and support throughout from someone who knows your trip." },
   { t: "The send-off", d: "We see you off at the end with the words that gave us our name: safari njema." },
 ];
 
@@ -96,8 +96,6 @@ export default function AboutPage() {
       </section>
 
       <WhyUs />
-      <div className="pt-20 md:pt-28" />
-      <GuestStory />
       <PlanCta />
     </>
   );

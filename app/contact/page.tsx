@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { img } from "@/data/images";
-import { mailtoHref, site, whatsappHref } from "@/config/site";
+import { mailtoHref, site } from "@/config/site";
 import { buildMetadata } from "@/lib/seo";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { Eyebrow } from "@/components/ui/SectionHeading";
@@ -9,7 +9,7 @@ import { Breadcrumbs } from "@/components/sections/PageHero";
 
 export const metadata = buildMetadata({
   title: "Contact us",
-  description: "Talk to a Kenya safari specialist by email, phone or WhatsApp. We reply within one working day.",
+  description: "Talk to a Kenya safari specialist by email or through our enquiry form. We reply within one working day.",
   path: "/contact",
   image: img("lamu-dhow").src,
 });
@@ -42,18 +42,6 @@ export default function ContactPage() {
                 <dt className="text-stone">Email</dt>
                 <dd className="mt-1 text-lg text-charcoal">
                   <a href={mailtoHref} className="hover:text-acacia">{site.contact.email}</a>
-                </dd>
-              </div>
-              <div>
-                <dt className="text-stone">Phone</dt>
-                <dd className="mt-1 text-lg text-charcoal">
-                  <a href={site.contact.phoneHref} className="hover:text-acacia">{site.contact.phone}</a>
-                </dd>
-              </div>
-              <div>
-                <dt className="text-stone">WhatsApp</dt>
-                <dd className="mt-1 text-lg text-charcoal">
-                  <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="hover:text-acacia">{site.contact.whatsappDisplay}</a>
                 </dd>
               </div>
               <div>

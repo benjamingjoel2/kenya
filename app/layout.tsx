@@ -4,9 +4,8 @@ import "./globals.css";
 import { site } from "@/config/site";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { WhatsAppFab } from "@/components/layout/WhatsAppFab";
 import { PlannerProvider } from "@/components/planner/PlannerProvider";
-import { MotionProvider } from "@/components/layout/MotionProvider";
+import { RevealObserver } from "@/components/layout/RevealObserver";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap", weight: ["300", "400", "500", "600", "700"] });
 
@@ -26,6 +25,11 @@ export const viewport: Viewport = { themeColor: "#1e1c1a" };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en-GB" className={inter.variable}>
+      <head>
+        <noscript>
+          <style>{"[data-rv],[data-rv-item]{opacity:1!important;transform:none!important}"}</style>
+        </noscript>
+      </head>
       <body>
         <a
           href="#main"
@@ -33,14 +37,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         >
           Skip to content
         </a>
-        <MotionProvider>
             <PlannerProvider>
               <Header />
               <main id="main">{children}</main>
               <Footer />
-              <WhatsAppFab />
             </PlannerProvider>
-        </MotionProvider>
+            <RevealObserver />
       </body>
     </html>
   );

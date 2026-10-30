@@ -9,7 +9,7 @@ import { getAllPosts } from "@/lib/posts";
 export default function sitemap(): MetadataRoute.Sitemap {
   const built = new Date();
   const u = (p: string) => new URL(p, site.url).toString();
-  const statics = ["/", "/destinations", "/safaris", "/experiences", "/stays", "/about", "/conservation", "/testimonials", "/faq", "/contact", "/plan-your-safari", "/blog"];
+  const statics = ["/", "/destinations", "/safaris", "/experiences", "/stays", "/about", "/conservation", "/faq", "/contact", "/plan-your-safari", "/blog"];
   return [
     ...statics.map((p) => ({ url: u(p), lastModified: built, changeFrequency: "monthly" as const, priority: p === "/" ? 1 : 0.7 })),
     ...destinations.map((d) => ({ url: u(`/destinations/${d.slug}`), lastModified: built, priority: 0.8 })),

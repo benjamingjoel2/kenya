@@ -2,14 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
-import { nav, whatsappHref } from "@/config/site";
+import { useEffect, useRef, useState } from "react";
+import { nav } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { Logo } from "./Logo";
 import { MobileMenu } from "./MobileMenu";
 import { StartPlanningButton } from "@/components/planner/StartPlanningButton";
-import { WhatsAppIcon } from "@/components/ui/Icons";
 
 /**
  * Full-width header: logo left, navigation centred, actions right.
@@ -17,16 +15,32 @@ import { WhatsAppIcon } from "@/components/ui/Icons";
  */
 export function Header() {
   const pathname = usePathname();
-  const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuOpenRef = useRef(menuOpen);
+  menuOpenRef.current = menuOpen;
 
-  useMotionValueEvent(scrollY, "change", (y) => {
-    const prev = scrollY.getPrevious() ?? 0;
-    setScrolled(y > 24);
-    setHidden(y > 600 && y > prev && !menuOpen);
-  });
+  useEffect(() => {
+    let prev = window.scrollY;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const y = window.scrollY;
+      setScrolled(y > 24);
+      setHidden(y > 600 && y > prev && !menuOpenRef.current);
+      prev = y;
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
 
   useEffect(() => setMenuOpen(false), [pathname]);
 
@@ -34,11 +48,14 @@ export function Header() {
 
   return (
     <>
-      <motion.header
-        animate={{ y: hidden ? "-100%" : "0%" }}
-        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+      <header
+        style={{
+          transform: hidden ? "translateY(-100%)" : undefined,
+          transition:
+            "background-color 500ms cubic-bezier(0.4,0,0.2,1), border-color 500ms cubic-bezier(0.4,0,0.2,1), color 500ms cubic-bezier(0.4,0,0.2,1), transform 350ms cubic-bezier(0.22,1,0.36,1)",
+        }}
         className={cn(
-          "fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,color] duration-500",
+          "fixed inset-x-0 top-0 z-50 border-b",
           overHero ? "border-transparent bg-transparent text-white" : "border-charcoal/[0.08] bg-cream/90 text-charcoal backdrop-blur-md",
         )}
       >
@@ -74,18 +91,6 @@ export function Header() {
           </nav>
 
           <div className="flex items-center justify-end gap-2">
-            <a
-              href={whatsappHref()}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Chat with us on WhatsApp"
-              className={cn(
-                "hidden h-11 w-11 place-items-center rounded-full transition-colors sm:grid",
-                overHero ? "bg-white/15 text-white hover:bg-white/25" : "bg-charcoal/[0.06] text-charcoal hover:bg-charcoal/[0.12]",
-              )}
-            >
-              <WhatsAppIcon className="h-5 w-5" />
-            </a>
             <StartPlanningButton variant={overHero ? "light" : "primary"} className="hidden sm:inline-flex" />
             <button
               type="button"
@@ -103,8 +108,8 @@ export function Header() {
             </button>
           </div>
         </div>
-      </motion.header>
-      <AnimatePresence>{menuOpen && <MobileMenu onClose={() => setMenuOpen(false)} />}</AnimatePresence>
+      </header>
+      {menuOpen && <MobileMenu onClose={() => setMenuOpen(false)} />}
     </>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
 
 import { useId, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { site } from "@/config/site";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/SectionHeading";
@@ -12,6 +11,8 @@ export function Newsletter() {
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "loading" | "done" | "error">("idle");
   const [error, setError] = useState("");
+  // "leaving": the form fades out before the success message fades in.
+  const [leaving, setLeaving] = useState(false);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -24,10 +25,14 @@ export function Newsletter() {
     try {
       const res = await fetch("/api/newsletter", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email }) });
       if (!res.ok) throw new Error();
-      setState("done");
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) setState("done");
+      else {
+        setLeaving(true);
+        window.setTimeout(() => setState("done"), 300);
+      }
     } catch {
       setState("error");
-      setError("Something went wrong. Please try again, or message us on WhatsApp.");
+      setError("Something went wrong. Please try again in a moment.");
     }
   }
 
@@ -44,23 +49,22 @@ export function Newsletter() {
           </p>
         </div>
         <div aria-live="polite">
-          <AnimatePresence mode="wait">
             {state === "done" ? (
-              <motion.div
-                key="done"
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="rounded-[var(--radius-field)] bg-white/10 p-6"
-              >
+              <div key="done" className="animate-fade-in-up rounded-[var(--radius-field)] bg-white/10 p-6">
                 <span className="grid h-12 w-12 place-items-center rounded-full bg-gold text-charcoal">
                   <CheckIcon className="h-6 w-6" />
                 </span>
                 <p className="mt-6 text-2xl font-medium text-white">Your guide is on its way.</p>
                 <p className="mt-2 text-cream/80">Check your inbox for The Kenya Safari Guide. When you are ready to talk dates, we are here.</p>
                 <p className="mt-6 text-3xl font-medium text-gold-pale">{site.signOff}</p>
-              </motion.div>
+              </div>
             ) : (
-              <motion.form key="form" onSubmit={onSubmit} noValidate exit={{ opacity: 0, y: -12 }} className="flex flex-col gap-3">
+              <form
+                key="form"
+                onSubmit={onSubmit}
+                noValidate
+                className={`flex flex-col gap-3 transition-[opacity,translate] duration-300 ${leaving ? "-translate-y-3 opacity-0" : ""}`}
+              >
                 <label htmlFor={`${id}-email`} className="text-sm font-medium text-cream/90">
                   Email address
                 </label>
@@ -74,7 +78,7 @@ export function Newsletter() {
                     onChange={(e) => setEmail(e.target.value)}
                     aria-invalid={!!error}
                     aria-describedby={error ? `${id}-err` : `${id}-hint`}
-                    placeholder="you@example.com"
+                    placeholder="name@email.com"
                     className="h-12 flex-1 rounded-[var(--radius-field)] border border-white/25 bg-white/10 px-4 text-white placeholder:text-cream/60 focus:border-gold-light focus:outline-none"
                   />
                   <Button type="submit" variant="light" disabled={state === "loading"} className="h-12">
@@ -86,9 +90,8 @@ export function Newsletter() {
                 ) : (
                   <p id={`${id}-hint`} className="text-sm text-cream/85">We’ll only use your email to send the guide and our occasional letter. Unsubscribe anytime.</p>
                 )}
-              </motion.form>
+              </form>
             )}
-          </AnimatePresence>
         </div>
       </div>
       </div>

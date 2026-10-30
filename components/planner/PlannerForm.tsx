@@ -4,8 +4,8 @@ import Image from "next/image";
 import { useEffect, useId, useRef, useState } from "react";
 import { useForm, type FieldErrors, type UseFormReturn } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AnimatePresence, motion } from "framer-motion";
-import { site, whatsappHref } from "@/config/site";
+import { AnimatePresence, MotionConfig, motion } from "framer-motion";
+import { mailtoHref, site } from "@/config/site";
 import { addOns, budgetTiers, plannerRoutes } from "@/data/routes";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { CheckIcon } from "@/components/ui/Icons";
@@ -116,6 +116,7 @@ export function PlannerForm({ variant = "page" }: { variant?: "page" | "modal" }
   const isLast = step === STEPS.length - 1;
 
   return (
+    <MotionConfig reducedMotion="user">
     <div ref={topRef} className="scroll-mt-28">
       <Progress step={step} onJump={(i) => i < step && goTo(i)} />
 
@@ -152,8 +153,8 @@ export function PlannerForm({ variant = "page" }: { variant?: "page" | "modal" }
         {status === "error" && (
           <p role="alert" className="mt-8 rounded-[var(--radius-card)] border border-shuka/40 bg-shuka/5 p-4 text-sm text-shuka">
             Sorry, we couldn’t send your request just now. Your answers are saved, so please try again, or{" "}
-            <a href={whatsappHref()} className="underline" target="_blank" rel="noopener noreferrer">
-              message us on WhatsApp
+            <a href={mailtoHref} className="underline">
+              email us at {site.contact.email}
             </a>
             .
           </p>
@@ -179,6 +180,7 @@ export function PlannerForm({ variant = "page" }: { variant?: "page" | "modal" }
         </div>
       </form>
     </div>
+    </MotionConfig>
   );
 }
 
@@ -506,9 +508,9 @@ function Confirmation({ name, variant }: { name: string; variant: "page" | "moda
         with first ideas, honest advice and a few questions.
       </p>
       <p className="mx-auto mt-4 max-w-lg text-stone">
-        Can’t wait? Message us any time on{" "}
-        <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="font-semibold text-acacia underline underline-offset-2">
-          WhatsApp
+        Can’t wait? Email us any time at{" "}
+        <a href={mailtoHref} className="font-semibold text-acacia underline underline-offset-2">
+          {site.contact.email}
         </a>
         .
       </p>

@@ -1,51 +1,37 @@
-"use client";
+import { cn } from "@/lib/utils";
 
-import { motion, type HTMLMotionProps } from "framer-motion";
+type DivProps = React.HTMLAttributes<HTMLDivElement>;
 
-const ease = [0.22, 1, 0.36, 1] as const;
-
-/** Fade-up on scroll into view. */
-export function Reveal({
-  delay = 0,
-  y = 28,
-  children,
-  ...rest
-}: { delay?: number; y?: number } & HTMLMotionProps<"div">) {
+/**
+ * Fade-up on scroll into view. Pure CSS plus one shared IntersectionObserver
+ * (`RevealObserver` in the root layout), so these render on the server and ship no JS.
+ */
+export function Reveal({ delay = 0, y = 28, className, style, children, ...rest }: { delay?: number; y?: number } & DivProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-      transition={{ duration: 0.9, ease, delay }}
+    <div
+      data-rv=""
+      className={className}
+      style={{ ...style, ["--rv-y" as string]: `${y}px`, ...(delay ? { ["--rv-d" as string]: `${delay}s` } : {}) }}
       {...rest}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
-/** Staggers its direct <RevealItem> children. */
-export function RevealGroup({ children, stagger = 0.08, ...rest }: { stagger?: number } & HTMLMotionProps<"div">) {
+/** Staggers its <RevealItem> children (in document order). */
+export function RevealGroup({ children, stagger = 0.08, className, ...rest }: { stagger?: number } & DivProps) {
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-      variants={{ hidden: {}, show: { transition: { staggerChildren: stagger } } }}
-      {...rest}
-    >
+    <div data-rv-group={stagger} className={className} {...rest}>
       {children}
-    </motion.div>
+    </div>
   );
 }
 
-export function RevealItem({ children, ...rest }: HTMLMotionProps<"div">) {
+export function RevealItem({ children, className, ...rest }: DivProps) {
   return (
-    <motion.div
-      variants={{ hidden: { opacity: 0, y: 32 }, show: { opacity: 1, y: 0, transition: { duration: 0.85, ease } } }}
-      {...rest}
-    >
+    <div data-rv-item="" className={cn(className)} {...rest}>
       {children}
-    </motion.div>
+    </div>
   );
 }

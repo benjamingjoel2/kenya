@@ -1,4 +1,5 @@
-export type Img = { src: string; alt: string };
+/** `placeholder`: branded illustration standing in for a photo still to be sourced. */
+export type Img = { src: string; alt: string; placeholder?: boolean };
 
 export type RegionId = "mara" | "amboseli" | "samburu" | "laikipia" | "tsavo" | "rift-valley" | "central" | "nairobi" | "coast";
 
@@ -82,16 +83,6 @@ export interface Stay {
   features: string[];
   hero: Img;
   gallery: Img[];
-}
-
-export interface Testimonial {
-  id: string;
-  name: string;
-  from: string;
-  trip: string;
-  quote: string;
-  /** All seed testimonials are placeholders until real reviews are collected. */
-  placeholder: true;
 }
 
 export interface PostMeta {
