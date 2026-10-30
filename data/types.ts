@@ -84,16 +84,6 @@ export interface Stay {
   gallery: Img[];
 }
 
-export interface Testimonial {
-  id: string;
-  name: string;
-  from: string;
-  trip: string;
-  quote: string;
-  /** All seed testimonials are placeholders until real reviews are collected. */
-  placeholder: true;
-}
-
 export interface PostMeta {
   slug: string;
   title: string;

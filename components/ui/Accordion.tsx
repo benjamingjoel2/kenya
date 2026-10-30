@@ -1,7 +1,6 @@
 "use client";
 
 import { useId, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { PlusIcon } from "./Icons";
 import { cn } from "@/lib/utils";
 
@@ -29,22 +28,20 @@ export function Accordion({ items, className }: { items: AccordionItem[]; classN
                 <PlusIcon className={cn("h-5 w-5 shrink-0 transition-transform duration-300", isOpen && "rotate-45")} />
               </button>
             </h3>
-            <AnimatePresence initial={false}>
-              {isOpen && (
-                <motion.div
-                  id={`${id}-p-${i}`}
-                  role="region"
-                  aria-labelledby={`${id}-h-${i}`}
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                  className="overflow-hidden"
-                >
-                  <div className="max-w-3xl pb-7 text-stone">{item.a}</div>
-                </motion.div>
+            <div
+              id={`${id}-p-${i}`}
+              role="region"
+              aria-labelledby={`${id}-h-${i}`}
+              inert={!isOpen}
+              className={cn(
+                "grid transition-[grid-template-rows,opacity] duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
+                isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
               )}
-            </AnimatePresence>
+            >
+              <div className="overflow-hidden">
+                <div className="max-w-3xl pb-7 text-stone">{item.a}</div>
+              </div>
+            </div>
           </div>
         );
       })}

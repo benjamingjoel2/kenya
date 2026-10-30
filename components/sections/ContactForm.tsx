@@ -46,7 +46,7 @@ export function ContactForm() {
       <Field label="How can we help?" htmlFor="c-message" error={errors.message?.message} errorId="c-message-err">
         <textarea id="c-message" rows={6} className={cn(inputCls, "h-auto py-3")} aria-invalid={!!errors.message} aria-describedby={errors.message ? "c-message-err" : undefined} {...register("message")} />
       </Field>
-      {failed && <p role="alert" className="text-sm text-shuka">Sorry, something went wrong. Please try again or message us on WhatsApp.</p>}
+      {failed && <p role="alert" className="text-sm text-shuka">Sorry, something went wrong. Please try again or email us directly.</p>}
       <div>
         <Button type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Sending…" : "Submit"}

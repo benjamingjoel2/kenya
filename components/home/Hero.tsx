@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
+import { useScrollProgress } from "@/lib/useScrollProgress";
 import { site } from "@/config/site";
 import { img } from "@/data/images";
 import { ButtonLink } from "@/components/ui/Button";
@@ -18,14 +18,18 @@ const GROUND = "#140c07";
  */
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
-  const wordY = useTransform(scrollYProgress, [0, 1], ["0%", "35%"]);
+  const bgRef = useRef<HTMLDivElement>(null);
+  const wordRef = useRef<HTMLParagraphElement>(null);
+  const onProgress = useCallback((p: number) => {
+    if (bgRef.current) bgRef.current.style.transform = p ? `translateY(${p * 25}%)` : "";
+    if (wordRef.current) wordRef.current.style.transform = p ? `translateY(${p * 35}%)` : "";
+  }, []);
+  useScrollProgress(ref, "exit", onProgress);
   const hero = img("mara-golden-hour");
 
   return (
     <section ref={ref} className="relative isolate flex min-h-[100svh] flex-col overflow-hidden" style={{ backgroundColor: GROUND }}>
-      <motion.div style={{ y: bgY }} className="absolute inset-0 -z-10">
+      <div ref={bgRef} className="absolute inset-0 -z-10">
         <div className="animate-zoom-out absolute inset-0">
           {site.heroVideo ? (
             <video className="h-full w-full object-cover" autoPlay muted loop playsInline poster={hero.src} aria-hidden>
@@ -36,18 +40,18 @@ export function Hero() {
           )}
         </div>
         <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/5 to-transparent" />
-      </motion.div>
+      </div>
 
       {/* Stage: grows to fill the space above the copy band; word + cut-out pinned to its bottom. */}
       <div className="relative min-h-[16rem] flex-1 lg:min-h-[100svh]">
         <div className="absolute bottom-0 left-1/2 aspect-[1600/520] w-[230%] -translate-x-1/2 sm:w-full">
-          <motion.p
-            style={{ y: wordY }}
+          <p
+            ref={wordRef}
             aria-hidden
             className="animate-rise absolute inset-x-0 bottom-[50%] text-center sm:bottom-[42%] text-[30vw] leading-[0.8] font-medium tracking-[-0.06em] text-white select-none [animation-delay:100ms] sm:text-[19vw]"
           >
             Kenya
-          </motion.p>
+          </p>
           <Image src={site.heroForeground} alt="" fill priority sizes="230vw" className="object-fill" />
         </div>
       </div>

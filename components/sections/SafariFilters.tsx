@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import type { BudgetTier, RegionId, Safari } from "@/data/types";
 import { SafariRow } from "@/components/cards/SafariRow";
 import { cn } from "@/lib/utils";
@@ -62,6 +62,7 @@ export function SafariFilters({ items, budgetLabels }: { items: Item[]; budgetLa
   const toggle = <T,>(v: T, cur: T | null, set: (x: T | null) => void) => set(cur === v ? null : v);
 
   return (
+    <MotionConfig reducedMotion="user">
     <div>
       <div className="flex flex-col gap-5 rounded-[var(--radius-card)] bg-paper p-6" role="group" aria-label="Filter safaris">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
@@ -137,5 +138,6 @@ export function SafariFilters({ items, budgetLabels }: { items: Item[]; budgetLa
         </p>
       )}
     </div>
+    </MotionConfig>
   );
 }

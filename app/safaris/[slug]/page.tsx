@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { getSafari, safaris, budgetLabels } from "@/data/safaris";
 import { getExperience } from "@/data/experiences";
-import { site, whatsappHref } from "@/config/site";
+import { site } from "@/config/site";
 import { buildMetadata, JsonLd } from "@/lib/seo";
 import { DetailTemplate, Fact, IconList, ScheduleRows } from "@/components/sections/DetailTemplate";
 import { MapPlaceholder } from "@/components/sections/MapPlaceholder";
@@ -12,7 +12,7 @@ import { StartPlanningButton } from "@/components/planner/StartPlanningButton";
 import { SafariRow } from "@/components/cards/SafariRow";
 import { PersonCard } from "@/components/cards/PersonCard";
 import { PlanCta } from "@/components/home/HomeSections";
-import { CalendarIcon, MealIcon, PinIcon, SparkIcon, SunIcon, WhatsAppIcon } from "@/components/ui/Icons";
+import { CalendarIcon, MealIcon, PinIcon, SparkIcon, SunIcon } from "@/components/ui/Icons";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -82,11 +82,6 @@ export default async function SafariPage({ params }: Props) {
               <StartPlanningButton variant="primary" className="w-full">
                 Enquire about this safari
               </StartPlanningButton>
-              <ButtonLink href={whatsappHref(`Hello Safari Njema, I'm interested in the "${s.title}" safari.`)} variant="outline" className="w-full">
-                <span className="inline-flex items-center gap-2">
-                  <WhatsAppIcon className="h-4 w-4" /> Ask on WhatsApp
-                </span>
-              </ButtonLink>
             </>
           ),
         }}

@@ -1,20 +1,38 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { animate, useInView, useReducedMotion } from "framer-motion";
+
+const easeOut = (t: number) => 1 - Math.pow(1 - t, 4);
 
 /** Counts up to `to` when scrolled into view. Renders the final value on the server. */
 export function CountUp({ to, suffix = "", className }: { to: number; suffix?: string; className?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "0px 0px -15% 0px" });
-  const reduce = useReducedMotion();
   const [value, setValue] = useState(to);
 
   useEffect(() => {
-    if (!inView || reduce) return;
-    const controls = animate(0, to, { duration: 1.6, ease: [0.22, 1, 0.36, 1], onUpdate: (v) => setValue(Math.round(v)) });
-    return () => controls.stop();
-  }, [inView, reduce, to]);
+    const el = ref.current;
+    if (!el || !("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let frame = 0;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        io.disconnect();
+        const start = performance.now();
+        const tick = (now: number) => {
+          const t = Math.min(1, (now - start) / 1600);
+          setValue(Math.round(easeOut(t) * to));
+          if (t < 1) frame = requestAnimationFrame(tick);
+        };
+        frame = requestAnimationFrame(tick);
+      },
+      { rootMargin: "0px 0px -15% 0px" },
+    );
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      cancelAnimationFrame(frame);
+    };
+  }, [to]);
 
   return (
     <span ref={ref} className={className}>

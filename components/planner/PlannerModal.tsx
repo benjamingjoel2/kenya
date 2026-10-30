@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { MotionConfig, motion } from "framer-motion";
 import { useFocusTrap } from "@/lib/useFocusTrap";
 import { XIcon } from "@/components/ui/Icons";
 import { PlannerForm } from "./PlannerForm";
@@ -20,6 +20,7 @@ export function PlannerModal({ onClose }: { onClose: () => void }) {
   }, []);
 
   return (
+    <MotionConfig reducedMotion="user">
     <div className="fixed inset-0 z-[80] flex items-end justify-center md:items-center md:p-6">
       <motion.div
         aria-hidden
@@ -54,5 +55,6 @@ export function PlannerModal({ onClose }: { onClose: () => void }) {
         </div>
       </motion.div>
     </div>
+    </MotionConfig>
   );
 }

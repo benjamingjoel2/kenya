@@ -1,6 +1,6 @@
 import { buildMetadata } from "@/lib/seo";
 import { img } from "@/data/images";
-import { site, whatsappHref } from "@/config/site";
+import { mailtoHref, site } from "@/config/site";
 import { PageHero } from "@/components/sections/PageHero";
 import { PlannerForm } from "@/components/planner/PlannerForm";
 import { ChatIcon, ClockIcon, UserIcon } from "@/components/ui/Icons";
@@ -46,11 +46,11 @@ export default function PlanYourSafariPage() {
                 </div>
               ))}
               <div className="border-t border-line pt-6 text-sm text-stone">
-                Prefer to talk?{" "}
-                <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="font-semibold text-acacia underline underline-offset-2">
-                  WhatsApp us
-                </a>{" "}
-                or call {site.contact.phone}.
+                Prefer email? Write to{" "}
+                <a href={mailtoHref} className="font-semibold text-acacia underline underline-offset-2">
+                  {site.contact.email}
+                </a>
+                .
               </div>
             </div>
           </aside>

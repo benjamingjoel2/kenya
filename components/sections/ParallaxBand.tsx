@@ -1,23 +1,26 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useCallback, useRef } from "react";
+import { useScrollProgress } from "@/lib/useScrollProgress";
 import type { Img } from "@/data/types";
 import { cn } from "@/lib/utils";
 
 /** Full-bleed image band with gentle parallax. */
 export function ParallaxBand({ image, children, className }: { image: Img; children: React.ReactNode; className?: string }) {
   const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
+  const layer = useRef<HTMLDivElement>(null);
+  const onProgress = useCallback((p: number) => {
+    if (layer.current) layer.current.style.transform = `translateY(${(p * 24 - 12).toFixed(2)}%)`;
+  }, []);
+  useScrollProgress(ref, "cross", onProgress);
   return (
     <section ref={ref} className="px-2 md:px-4">
       <div className={cn("relative isolate overflow-hidden rounded-[var(--radius-card)] bg-charcoal text-white", className)}>
-        <motion.div style={{ y }} className="absolute -inset-y-[14%] inset-x-0 -z-10">
+        <div ref={layer} style={{ transform: "translateY(-12%)" }} className="absolute -inset-y-[14%] inset-x-0 -z-10">
           <Image src={image.src} alt={image.alt} fill sizes="100vw" className="object-cover" />
           <div aria-hidden className="absolute inset-0 bg-black/45" />
-        </motion.div>
+        </div>
         {children}
       </div>
     </section>

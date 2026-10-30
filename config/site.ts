@@ -1,6 +1,5 @@
 /**
  * Single source of truth for brand, contact details and navigation.
- * Replace the [BRACKETED] placeholders before launch.
  */
 
 export const site = {
@@ -9,34 +8,21 @@ export const site = {
   description:
     "Tailor-made Kenya safaris and beach escapes, planned by one dedicated specialist from your first message to the day you fly home.",
   signOff: "Safari njema.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.safarinjema.example",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://safarinjema.tourground.com",
   locale: "en_GB",
 
   contact: {
-    email: "[EMAIL]",
-    phone: "+254 700 000 000",
-    phoneHref: "tel:+254700000000",
-    /** Digits only, international format, no "+" — used for wa.me links. */
-    whatsapp: "[NUMBER]",
-    whatsappDisplay: "+254 700 000 000",
-    address: "Westlands, Nairobi, Kenya",
-    hours: "Specialists online Mon–Sat, 8am–7pm EAT · WhatsApp support 24/7 while you travel",
+    email: "safarinjema@tourground.com",
+    /** Business address: Spaces Eaton Place (IWG premium coworking), Gigiri, Nairobi. */
+    address: "Spaces, Eaton Place, 2nd Floor, United Nations Crescent, Gigiri, Nairobi, Kenya",
+    postalAddress: {
+      streetAddress: "Eaton Place, 2nd Floor, United Nations Crescent, Gigiri",
+      addressLocality: "Nairobi",
+      addressRegion: "Nairobi",
+      addressCountry: "KE",
+    },
+    hours: "Specialists online Mon–Sat, 8am–7pm EAT",
   },
-
-  socials: [
-    { label: "Instagram", href: "https://instagram.com/" },
-    { label: "Facebook", href: "https://facebook.com/" },
-    { label: "YouTube", href: "https://youtube.com/" },
-    { label: "Pinterest", href: "https://pinterest.com/" },
-  ],
-
-  /** Membership badge placeholders — swap for real logos once confirmed. */
-  memberships: [
-    { short: "KATO", label: "Kenya Association of Tour Operators (placeholder)" },
-    { short: "KTB", label: "Magical Kenya / Kenya Tourism Board (placeholder)" },
-    { short: "EK", label: "Ecotourism Kenya (placeholder)" },
-    { short: "KWS", label: "Kenya Wildlife Service partner (placeholder)" },
-  ],
 
   stats: {
     yearsExperience: 15,
@@ -73,7 +59,6 @@ export const footerNav = {
   company: [
     { label: "About us", href: "/about" },
     { label: "Conservation", href: "/conservation" },
-    { label: "Testimonials", href: "/testimonials" },
     { label: "Journal", href: "/blog" },
     { label: "FAQ", href: "/faq" },
     { label: "Contact", href: "/contact" },
@@ -84,8 +69,5 @@ export const footerNav = {
     { label: "Cookies", href: "/cookies" },
   ],
 } as const;
-
-export const whatsappHref = (text = "Hello Safari Njema, I'd love help planning a Kenya safari.") =>
-  `https://wa.me/${site.contact.whatsapp}?text=${encodeURIComponent(text)}`;
 
 export const mailtoHref = `mailto:${site.contact.email}`;
