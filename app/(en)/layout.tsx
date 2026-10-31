@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { site } from "@/config/site";
+import { locale } from "@/lib/locale";
+import { OG_LOCALES } from "@/lib/i18n-paths";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { PlannerProvider } from "@/components/planner/PlannerProvider";
@@ -14,7 +16,7 @@ export const metadata: Metadata = {
   title: { default: `${site.name} · ${site.tagline}`, template: `%s · ${site.name}` },
   description: site.description,
   applicationName: site.name,
-  openGraph: { siteName: site.name, locale: site.locale, type: "website" },
+  openGraph: { siteName: site.name, locale: OG_LOCALES[locale], type: "website" },
   keywords: ["Kenya safari", "tailor-made safari", "Masai Mara safari", "Great Migration", "Kenya bush and beach", "luxury Kenya safari", "Kenya safari specialist"],
   formatDetection: { telephone: false, email: false, address: false },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
@@ -24,7 +26,7 @@ export const viewport: Viewport = { themeColor: "#1e1c1a" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-GB" className={inter.variable}>
+    <html lang={locale} className={inter.variable}>
       <head>
         <noscript>
           <style>{"[data-rv],[data-rv-item]{opacity:1!important;transform:none!important}"}</style>

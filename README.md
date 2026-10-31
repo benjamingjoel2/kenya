@@ -48,6 +48,15 @@ Every page is generated from `/data` and `/content`, so moving to a CMS means sw
 - **Map**: `components/sections/MapPlaceholder.tsx` is a stylised placeholder.
 - **API routes**: `app/api/plan`, `newsletter` and `contact` currently `console.log` the payload. Wire them up to email/CRM (see the TODOs).
 
+## Languages (EN · FR · DE · ES)
+
+English is the source and lives at the root URLs; French, German and Spanish are pre-rendered under `/fr`, `/de`, `/es` with no translation library in the browser.
+
+- `npm run build` / `npm run dev` first run `scripts/i18n.mjs`, which copies `app/(en)` to `app/{fr,de,es}` and `components`, `data`, `config`, `lib` to `i18n/gen/<locale>`, replacing visible English strings with the translations in `i18n/{fr,de,es}.json` and prefixing internal links. Generated folders are git-ignored; the build fails if a string has no translation (`npm run i18n -- --missing` lists them).
+- Blog translations live in `content/blog-{fr,de,es}` (same slugs as `content/blog`).
+- `components/layout/LanguageSwitcher.tsx` (header and mobile menu) links to the same page in each language; no automatic redirects. `lib/i18n-paths.ts` builds hreflang alternates (used by `lib/seo.tsx` and `app/sitemap.ts`).
+- When you add or change English copy, add the translation to all three JSON files.
+
 ## Features
 
 - Enquiry-led: no fixed prices anywhere. Every safari, stay and experience leads to the trip planner or the contact form for a tailor-made quote.

@@ -467,7 +467,6 @@ function StepContact({ form, uid }: StepProps) {
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
           {[
             { v: "email", t: "Email" },
-            { v: "whatsapp", t: "WhatsApp" },
             { v: "telephone", t: "Telephone" },
           ].map((o) => (
             <ChoiceTile key={o.v} type="checkbox" value={o.v} checked={methods.includes(o.v as PlannerValues["contactMethods"][number])} {...register("contactMethods")}>

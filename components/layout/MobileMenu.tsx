@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { nav } from "@/config/site";
 import { Logo } from "./Logo";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import { StartPlanningButton } from "@/components/planner/StartPlanningButton";
 import { useFocusTrap } from "@/lib/useFocusTrap";
 
@@ -57,6 +58,7 @@ export function MobileMenu({ onClose: close }: { onClose: () => void }) {
         </ul>
       </nav>
       <div className="container-x flex flex-col gap-4 py-6">
+        <LanguageSwitcher className="text-[0.8125rem]" />
         <div onClick={onClose}>
           <StartPlanningButton variant="primary" className="w-full" />
         </div>

@@ -1,4 +1,5 @@
 import { site } from "@/config/site";
+import { locale } from "@/lib/locale";
 import { buildMetadata, JsonLd } from "@/lib/seo";
 import { getAllPosts } from "@/lib/posts";
 import { Hero } from "@/components/home/Hero";
@@ -28,7 +29,7 @@ export default function Home() {
             "@type": "WebSite",
             name: site.name,
             url: site.url,
-            inLanguage: "en-GB",
+            inLanguage: locale,
             description: site.description,
           },
           {

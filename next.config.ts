@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // One root layout per language (app/(en), app/fr, app/de, app/es), so unmatched URLs need a global 404.
+  experimental: { globalNotFound: true },
   images: {
     remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
     formats: ["image/avif", "image/webp"],
