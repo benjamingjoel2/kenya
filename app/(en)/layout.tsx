@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "../globals.css";
 import { site } from "@/config/site";
 import { locale } from "@/lib/locale";
@@ -9,7 +9,7 @@ import { Footer } from "@/components/layout/Footer";
 import { PlannerProvider } from "@/components/planner/PlannerProvider";
 import { RevealObserver } from "@/components/layout/RevealObserver";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap", weight: ["300", "400", "500", "600", "700"] });
+const inter = localFont({ src: "../fonts/inter-latin.woff2", variable: "--font-inter", display: "swap", weight: "300 700" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
