@@ -58,7 +58,8 @@ const SKIP_CALLS = new Set([
 const hasLetter = (s) => /[A-Za-zÀ-ÿ]/.test(s);
 const looksLikeClasses = (s) => {
   const toks = s.trim().split(/\s+/);
-  return toks.every((t) => /^[!-]?[a-z0-9@:\[\]\/._%#(),'&>=+*~-]+$/.test(t)) && toks.some((t) => /[-:\[\]\/_]/.test(t) || (/\d/.test(t) && /[a-z]/.test(t)));
+  const classy = toks.filter((t) => /[-:\[\]\/_]/.test(t) || (/\d/.test(t) && /[a-z]/.test(t))).length;
+  return toks.every((t) => /^[!-]?[a-z0-9@:\[\]\/._%#(),'&>=+*~-]+$/.test(t)) && classy > 0 && classy * 2 >= toks.length;
 };
 function isProse(s, { loose = false } = {}) {
   const t = s.trim();
@@ -241,7 +242,7 @@ function transform(code, file, locale, dict) {
         }
         const key = keyFromTemplate(node);
         const staticText = key.replace(/\{\d+\}/g, " ");
-        const articleLike = /^([a-z]+ \{0\}|\{0\} [a-z]+)$/.test(key); // e.g. "the {0}", "{0} safari"
+        const articleLike = /^([a-z]+ \{0\}|\{0\} [A-Za-z]+)$/.test(key); // e.g. "the {0}", "{0} safari"
         if ((isProse(staticText) && hasLetter(staticText)) || articleLike) {
           const out = tr(key);
           if (out !== null) {
