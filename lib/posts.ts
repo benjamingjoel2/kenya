@@ -5,7 +5,10 @@ import matter from "gray-matter";
 import { img, type ImageKey } from "@/data/images";
 import type { PostMeta } from "@/data/types";
 
-const DIR = path.join(process.cwd(), "content/blog");
+import { locale } from "@/lib/locale";
+
+// English posts live in content/blog; translations in content/blog-<locale> (same slugs).
+const DIR = path.join(process.cwd(), locale === "en" ? "content/blog" : `content/blog-${locale}`);
 
 type Frontmatter = Omit<PostMeta, "slug" | "cover"> & { coverKey: ImageKey };
 

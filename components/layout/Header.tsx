@@ -7,6 +7,7 @@ import { nav } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { Logo } from "./Logo";
 import { MobileMenu } from "./MobileMenu";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import { StartPlanningButton } from "@/components/planner/StartPlanningButton";
 
 /**
@@ -91,6 +92,7 @@ export function Header() {
           </nav>
 
           <div className="flex items-center justify-end gap-2">
+            <LanguageSwitcher light={overHero} className="mr-3 hidden lg:flex" />
             <StartPlanningButton variant={overHero ? "light" : "primary"} className="hidden sm:inline-flex" />
             <button
               type="button"

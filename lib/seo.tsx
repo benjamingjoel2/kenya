@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { site } from "@/config/site";
+import { locale } from "@/lib/locale";
+import { OG_LOCALES, languageAlternates, localePath } from "@/lib/i18n-paths";
 
 const SUFFIX = ` · ${site.name}`;
 const MAX_TITLE = 60;
@@ -34,7 +36,9 @@ export function buildMetadata({
   publishedTime?: string;
   noindex?: boolean;
 }): Metadata {
-  const url = new URL(path, site.url).toString();
+  // `path` is the English path; each language copy of this module points it at its own URL.
+  const url = new URL(localePath(path, locale), site.url).toString();
+  const languages = Object.fromEntries(Object.entries(languageAlternates(path)).map(([k, v]) => [k, new URL(v, site.url).toString()]));
   const desc = clamp(description, MAX_DESC);
   const fullTitle = title ? (title.length + SUFFIX.length <= MAX_TITLE ? `${title}${SUFFIX}` : title) : `${site.name} · ${site.tagline}`;
   // Illustrated placeholders (SVG) are not valid share images: fall back to the generated one.
@@ -43,13 +47,13 @@ export function buildMetadata({
   return {
     title: { absolute: fullTitle },
     description: desc,
-    alternates: { canonical: url },
+    alternates: { canonical: url, languages },
     openGraph: {
       title: fullTitle,
       description: desc,
       url,
       siteName: site.name,
-      locale: site.locale,
+      locale: OG_LOCALES[locale],
       type,
       images,
       ...(type === "article" && publishedTime ? { publishedTime, authors: [site.name] } : {}),

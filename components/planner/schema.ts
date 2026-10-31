@@ -3,7 +3,7 @@ import { z } from "zod";
 export const ROUTE_IDS = ["mara-classic", "mara-amboseli", "mara-laikipia", "samburu-laikipia", "bush-beach", "migration", "gorillas", "not-sure"] as const;
 export const BUDGETS = ["value-luxury", "premium", "ultra", "not-sure"] as const;
 export const ADD_ONS = ["insurance-info", "international-flights", "light-aircraft", "balloon", "beach"] as const;
-export const CONTACT_METHODS = ["email", "whatsapp", "telephone"] as const;
+export const CONTACT_METHODS = ["email", "telephone"] as const;
 
 const todayIso = () => new Date().toISOString().slice(0, 10);
 
