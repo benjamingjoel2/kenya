@@ -6,7 +6,7 @@ export const metadata = buildMetadata({ title: "Privacy policy", description: "H
 
 export default function Page() {
   return (
-    <LegalPage title="Privacy policy" path="/privacy" updated="30 October 2026">
+    <LegalPage title="Privacy policy" path="/privacy" updated="1 November 2026">
       <h2>Who we are</h2>
       <p>Safari Njema plans tailor-made journeys in Kenya. In this policy, “we”, “us” and “our” mean Safari Njema, of Spaces, Eaton Place, 2nd Floor, United Nations Crescent, Gigiri, Nairobi, Kenya. We are responsible for the personal information you share with us through this website.</p>
       <p>If you have any question about this policy or your information, email us at <a href="mailto:safarinjema@tourground.com">safarinjema@tourground.com</a>.</p>
@@ -32,13 +32,15 @@ export default function Page() {
       <p>We only share your information where it is needed for the purposes above:</p>
       <ul>
         <li>With the lodges, camps, hotels, guides, drivers, airlines and other suppliers who deliver your trip, when you book.</li>
-        <li>Our website host, which serves the site and keeps short-lived technical logs.</li>
+        <li>Our website host, Vercel Inc., which serves the site, keeps short-lived technical logs and runs the server functions that receive the trip planner, contact form and newsletter sign-up and pass them to our team.</li>
         <li>Our email provider, which delivers your enquiry to us and our replies to you.</li>
         <li>With professional advisers or authorities where the law requires it.</li>
       </ul>
       <p>Some of these suppliers and service providers are outside the country you live in. Where we transfer your information internationally, we take steps to make sure it is protected to the standard required by law.</p>
+      <p>Where data protection law requires it, we rely on recognised safeguards for these transfers, such as the European Commission’s standard contractual clauses (with the UK addendum), adequacy decisions, or the fact that the transfer is necessary to perform the contract you asked us to arrange. You can ask us for details.</p>
       <h2>How long we keep it</h2>
       <p>We keep enquiries for up to two years after our last contact so we can pick up where we left off if you come back to us. If you travel with us, we keep booking records for as long as accounting and tax law requires (usually up to seven years). Newsletter details are kept until you unsubscribe.</p>
+      <p>Server logs: kept by our hosting provider for a short period (no more than 30 days) for security, then deleted.</p>
       <h2>Your rights</h2>
       <p>Depending on where you live, you have the right to ask for a copy of the information we hold about you, to have it corrected or deleted, to restrict or object to how we use it, to receive it in a portable format, and to withdraw your consent at any time. To use any of these rights, email <a href="mailto:safarinjema@tourground.com">safarinjema@tourground.com</a>. We will reply within one month.</p>
       <p>If you are unhappy with how we have handled your information, please tell us first so we can put it right. You can also complain to the data-protection authority where you live or to the Office of the Data Protection Commissioner in Kenya.</p>
@@ -48,6 +50,10 @@ export default function Page() {
       <p>How this website uses cookies and your browser’s storage is explained in our <Link href="/cookies">Cookie Policy</Link>.</p>
       <h2>Changes to this policy</h2>
       <p>We may update this policy from time to time. The date at the top of the page shows when it last changed.</p>
+      <h2>Children</h2>
+      <p>This website and our services are meant for adults. We do not knowingly collect personal data directly from children under 16. Details of children travelling in a family group are given to us by a parent or guardian and are used only to plan and run the trip.</p>
+      <h2>Contact</h2>
+      <p>Safari Njema, Spaces, Eaton Place, 2nd Floor, United Nations Crescent, Gigiri, Nairobi, Kenya. Email: <a href="mailto:safarinjema@tourground.com">safarinjema@tourground.com</a>.</p>
     </LegalPage>
   );
 }
