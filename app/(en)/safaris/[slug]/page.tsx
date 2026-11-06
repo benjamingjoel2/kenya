@@ -4,7 +4,6 @@ import { getExperience } from "@/data/experiences";
 import { site } from "@/config/site";
 import { buildMetadata, JsonLd } from "@/lib/seo";
 import { DetailTemplate, Fact, IconList, ScheduleRows } from "@/components/sections/DetailTemplate";
-import { MapPlaceholder } from "@/components/sections/MapPlaceholder";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { ButtonLink } from "@/components/ui/Button";
@@ -117,7 +116,17 @@ export default async function SafariPage({ params }: Props) {
               />
             ),
           },
-          { id: "route", label: "Route", title: "Route", content: <MapPlaceholder stops={mapStops} /> },
+          { id: "route", label: "Route", title: "Route", content: (
+              <ol className="flex flex-wrap items-center gap-x-3 gap-y-2 text-lg text-charcoal">
+                {mapStops.map((stop, i) => (
+                  <li key={stop} className="flex items-center gap-3">
+                    {i > 0 && <span aria-hidden className="text-stone">→</span>}
+                    {stop}
+                  </li>
+                ))}
+              </ol>
+            ),
+          },
           { id: "included", label: "What's included", title: "What’s included", content: <IconList items={s.inclusions} /> },
           {
             id: "not-included",

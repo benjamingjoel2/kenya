@@ -39,13 +39,11 @@ Every page is generated from `/data` and `/content`, so moving to a CMS means sw
 ## Before launch: placeholders to replace
 
 - **`config/site.ts`**: stats (years, partner camps, parks). The email (`safarinjema@tourground.com`) and business address (Spaces, Eaton Place, Gigiri, Nairobi) are set; confirm the coworking arrangement before launch.
-- **Hero cut-out**: `public/hero/foreground.svg` is a placeholder silhouette layered in front of the giant hero word; replace with a transparent cut-out from your hero photo (`site.heroForeground`).
 - **Photos**: every image is an Unsplash placeholder in `data/images.ts`. The photo IDs were not checked, so swap any that fail to load, and ideally use your own photography.
 - **Logo**: a text and SVG placeholder in `components/layout/Logo.tsx`.
 - **Stays**: fictional sample properties (`data/stays.ts`). When real partner camps replace them, use images the venue allows (see `IMAGES-NEEDED.md`).
 - **FAQ facts** (eTA, KWS cashless payments, health, tipping guidance): review them with your team.
 - **Legal pages** (`/privacy`, `/terms`, `/cookies`) are complete drafts; have a lawyer review them before launch.
-- **Map**: `components/sections/MapPlaceholder.tsx` is a stylised placeholder.
 - **API routes**: `app/api/plan`, `newsletter` and `contact` currently `console.log` the payload. Wire them up to email/CRM (see the TODOs).
 
 ## Languages (EN · FR · DE · ES)

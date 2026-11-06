@@ -33,7 +33,7 @@ export function Carousel({ children, label, itemClassName }: { children: React.R
       <ul
         ref={track}
         onScroll={update}
-        className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-px-5 px-5 md:-mx-8 md:scroll-px-8 md:px-8"
+        className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-px-4 px-4 sm:-mx-6 sm:scroll-px-6 sm:px-6 lg:-mx-8 lg:scroll-px-8 lg:px-8"
       >
         {Children.map(children, (child) => (
           <li className={cn("w-[78%] shrink-0 snap-start sm:w-[45%] lg:w-[calc(25%-18px)]", itemClassName)}>{child}</li>
