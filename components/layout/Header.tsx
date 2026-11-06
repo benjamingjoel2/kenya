@@ -73,14 +73,15 @@ export function Header() {
                       href={item.href}
                       aria-current={active ? "page" : undefined}
                       className={cn(
-                        "inline-flex h-10 items-center rounded-full px-4 text-[0.875rem] font-medium transition-colors",
+                        "inline-flex h-10 items-center px-3 text-[0.875rem] font-medium underline-offset-[6px] transition-colors",
+                        active && "underline decoration-1",
                         overHero
                           ? active
-                            ? "bg-white/15 text-white"
-                            : "text-white/85 hover:bg-white/10 hover:text-white"
+                            ? "text-white"
+                            : "text-white/85 hover:text-white"
                           : active
-                            ? "bg-charcoal/[0.07] text-charcoal"
-                            : "text-charcoal/70 hover:bg-charcoal/[0.05] hover:text-charcoal",
+                            ? "text-charcoal"
+                            : "text-charcoal/70 hover:text-charcoal",
                       )}
                     >
                       {item.label}

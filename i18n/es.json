@@ -1477,5 +1477,6 @@
  "Our website host, Vercel Inc., which serves the site, keeps short-lived technical logs and runs the server functions that receive the trip planner, contact form and newsletter sign-up and pass them to our team.": "Nuestro proveedor de alojamiento, Vercel Inc., que sirve el sitio, conserva registros técnicos de corta duración y ejecuta las funciones de servidor que reciben el planificador de viajes, el formulario de contacto y la suscripción al boletín y los pasan a nuestro equipo.",
  "Remembers the answers and step you have reached in the trip planner, so you can come back and finish it later.": "Recuerda sus respuestas y el paso al que ha llegado en el planificador de viajes, para que pueda volver y terminarlo más tarde.",
  "Until you submit the planner or clear your browser data": "Hasta que envíe el planificador o borre los datos del navegador",
- "We use your personal information only as described in our": "Utilizamos sus datos personales únicamente como se describe en nuestra"
+ "We use your personal information only as described in our": "Utilizamos sus datos personales únicamente como se describe en nuestra",
+ "Footer": "Pie de página"
 }

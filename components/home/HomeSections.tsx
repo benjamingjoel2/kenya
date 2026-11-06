@@ -20,7 +20,6 @@ import { PostCard } from "@/components/cards/PostCard";
 import { Carousel } from "@/components/ui/Carousel";
 import { StartPlanningButton } from "@/components/planner/StartPlanningButton";
 import { ChatIcon, MapIcon, PlusIcon, ScaleIcon, UserIcon } from "@/components/ui/Icons";
-import { KenyaDotMap } from "./KenyaDotMap";
 
 /* 2 · Statistic: destination families with full-bleed hairlines (reference "statistic"). */
 export function DestinationStats() {
@@ -210,38 +209,31 @@ export function CombineSection() {
   );
 }
 
-/* 6 · Explore by destination: glowing dot map + destination cards. */
+/* 6 · Explore by destination: destination list + cards. */
 export function DestinationMap() {
   return (
     <section className="section-y bg-paper">
       <div className="container-x">
         <SectionHeading
-          eyebrow="Map"
+          eyebrow="Destinations"
           title="Explore Kenya by destination"
           intro="Big-cat country in the Mara, elephants beneath Kilimanjaro, the wild north, rhino sanctuaries in Laikipia and a coastline of coral and dhows."
         />
-        <div className="mt-14 grid items-center gap-10 md:grid-cols-12">
-          <Reveal className="md:col-span-6">
-            <div className="mx-auto max-w-[40rem]">
-              <KenyaDotMap />
-            </div>
-          </Reveal>
-          <RevealGroup className="flex flex-col divide-y divide-line border-y border-line md:col-span-6">
-            {destinations.slice(0, 7).map((d) => (
-              <RevealItem key={d.slug}>
-                <Link href={`/destinations/${d.slug}`} className="group flex items-baseline justify-between gap-4 py-4">
-                  <span className="text-lg font-medium text-charcoal group-hover:text-acacia">{d.name}</span>
-                  <span className="text-right text-sm text-stone">/ {d.tagline}</span>
-                </Link>
-              </RevealItem>
-            ))}
-            <RevealItem className="pt-6">
-              <ButtonLink href="/destinations" variant="outline">
-                All 14 destinations
-              </ButtonLink>
+        <RevealGroup className="mt-14 grid border-t border-line md:grid-cols-2 md:gap-x-10">
+          {destinations.slice(0, 8).map((d) => (
+            <RevealItem key={d.slug} className="border-b border-line">
+              <Link href={`/destinations/${d.slug}`} className="group flex items-baseline justify-between gap-4 py-4">
+                <span className="text-lg font-medium text-charcoal group-hover:text-acacia">{d.name}</span>
+                <span className="text-right text-sm text-stone">/ {d.tagline}</span>
+              </Link>
             </RevealItem>
-          </RevealGroup>
-        </div>
+          ))}
+        </RevealGroup>
+        <Reveal className="pt-8">
+          <ButtonLink href="/destinations" variant="outline">
+            All 14 destinations
+          </ButtonLink>
+        </Reveal>
         <div className="mt-20">
           <Carousel label="Destinations">
             {destinations.map((d) => (
