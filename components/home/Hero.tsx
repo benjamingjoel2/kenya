@@ -1,38 +1,73 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
+import { useCallback, useRef } from "react";
+import { useScrollProgress } from "@/lib/useScrollProgress";
 import { site } from "@/config/site";
 import { img } from "@/data/images";
+import { ButtonLink } from "@/components/ui/Button";
 import { StartPlanningButton } from "@/components/planner/StartPlanningButton";
 
+/** Colour of the foreground ground; the copy band below the stage uses it too. */
+const GROUND = "#140c07";
+
 /**
- * Offset-card hero: headline and one action on the dark ground, a portrait photo card
- * offset over an acacia colour field beside it. Server-rendered, no scroll JS.
+ * Layered hero (reference "intro"): photo → shade → giant word → foreground cut-out.
+ * The word and the cut-out share one "stage" sized by the cut-out's aspect ratio,
+ * so the ridge always overlaps the bottom of the word at every screen width.
  */
 export function Hero() {
+  const ref = useRef<HTMLElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
+  const wordRef = useRef<HTMLParagraphElement>(null);
+  const onProgress = useCallback((p: number) => {
+    if (bgRef.current) bgRef.current.style.transform = p ? `translateY(${p * 25}%)` : "";
+    if (wordRef.current) wordRef.current.style.transform = p ? `translateY(${p * 35}%)` : "";
+  }, []);
+  useScrollProgress(ref, "exit", onProgress);
   const hero = img("mara-golden-hour");
 
   return (
-    <section className="relative isolate overflow-hidden bg-[#140c07] text-white">
-      <div className="container-x grid items-center gap-14 pt-28 pb-20 lg:min-h-[100svh] lg:grid-cols-12 lg:gap-8 lg:pt-32 lg:pb-24">
-        <div className="lg:col-span-6 xl:col-span-5">
-          <p className="text-label font-medium text-gold-light">{site.name}</p>
-          <h1 className="mt-5 max-w-[16ch] text-[clamp(2.25rem,4.4vw,4.25rem)] leading-[1.04] font-medium tracking-[-0.035em] text-white">
-            {site.tagline}
-          </h1>
-          <p className="mt-6 max-w-[34rem] text-lg text-white/75">{site.description}</p>
-          <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
-            <StartPlanningButton variant="light" />
-            <Link href="/safaris" className="text-[0.875rem] font-medium text-white underline decoration-white/40 underline-offset-[6px] hover:decoration-white">
-              Explore safaris
-            </Link>
-          </div>
+    <section ref={ref} className="relative isolate flex min-h-[100svh] flex-col overflow-hidden" style={{ backgroundColor: GROUND }}>
+      <div ref={bgRef} className="absolute inset-0 -z-10">
+        <div className="animate-zoom-out absolute inset-0">
+          {site.heroVideo ? (
+            <video className="h-full w-full object-cover" autoPlay muted loop playsInline poster={hero.src} aria-hidden>
+              <source src={site.heroVideo} type="video/mp4" />
+            </video>
+          ) : (
+            <Image src={hero.src} alt={hero.alt} fill priority sizes="100vw" className="object-cover" />
+          )}
         </div>
+        <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/5 to-transparent" />
+      </div>
 
-        <div className="relative lg:col-span-6 lg:col-start-7 xl:col-span-6 xl:col-start-7">
-          {/* Colour field the card sits over, offset to the right and below. */}
-          <div aria-hidden className="absolute top-[14%] right-0 -bottom-[8%] left-[34%] rounded-[var(--radius-card)] bg-acacia" />
-          <div className="relative aspect-[4/5] w-[72%] max-w-[28rem] overflow-hidden rounded-[var(--radius-media)] shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6)] lg:ml-[6%]">
-            <Image src={hero.src} alt={hero.alt} fill priority sizes="(min-width: 1024px) 28rem, 72vw" className="object-cover" />
+      {/* Stage: grows to fill the space above the copy band; word + cut-out pinned to its bottom. */}
+      <div className="relative min-h-[16rem] flex-1 lg:min-h-[100svh]">
+        <div className="absolute bottom-0 left-1/2 aspect-[1600/520] w-[230%] -translate-x-1/2 sm:w-full">
+          <p
+            ref={wordRef}
+            aria-hidden
+            className="animate-rise absolute inset-x-0 bottom-[50%] text-center sm:bottom-[42%] text-[30vw] leading-[0.8] font-medium tracking-[-0.06em] text-white select-none [animation-delay:100ms] sm:text-[19vw]"
+          >
+            Kenya
+          </p>
+          <Image src={site.heroForeground} alt="" fill priority sizes="230vw" className="object-fill" />
+        </div>
+      </div>
+
+      {/* Copy: its own band below the stage; overlaid on the dark ground from lg up. */}
+      <div className="relative bg-[#140c07] lg:absolute lg:inset-x-0 lg:bottom-0 lg:bg-transparent">
+        <div className="container-x flex flex-col gap-6 pt-2 pb-24 text-white sm:flex-row sm:items-end sm:justify-between sm:pb-10 lg:pb-8">
+          <h1 className="animate-fade-up max-w-[36rem] text-xxl font-normal tracking-[-0.01em] text-white [animation-delay:300ms]">
+            <span className="sr-only">Safari Njema: </span>Tailor-made Kenya safaris and beach escapes, planned by one specialist from your
+            first message to the day you fly home.
+          </h1>
+          <div className="animate-fade-up flex shrink-0 flex-wrap gap-2 [animation-delay:400ms] sm:mr-40">
+            <StartPlanningButton variant="light" />
+            <ButtonLink href="/safaris" variant="outline-light">
+              Explore safaris
+            </ButtonLink>
           </div>
         </div>
       </div>
