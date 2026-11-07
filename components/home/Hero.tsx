@@ -12,9 +12,9 @@ import { StartPlanningButton } from "@/components/planner/StartPlanningButton";
 const GROUND = "#140c07";
 
 /**
- * Layered hero (reference "intro"): photo → shade → giant word → foreground cut-out.
- * The word and the cut-out share one "stage" sized by the cut-out's aspect ratio,
- * so the ridge always overlaps the bottom of the word at every screen width.
+ * Layered hero (reference "intro"): photo → shade → giant word → fade into the ground.
+ * The word sits on a "stage" pinned to the bottom of the photo; the photo fades into the
+ * dark ground below it (a CSS gradient, no drawn cut-out), so the copy band reads cleanly.
  */
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -42,7 +42,7 @@ export function Hero() {
         <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/5 to-transparent" />
       </div>
 
-      {/* Stage: grows to fill the space above the copy band; word + cut-out pinned to its bottom. */}
+      {/* Stage: grows to fill the space above the copy band; word + fade pinned to its bottom. */}
       <div className="relative min-h-[16rem] flex-1 lg:min-h-[100svh]">
         <div className="absolute bottom-0 left-1/2 aspect-[1600/520] w-[230%] -translate-x-1/2 sm:w-full">
           <p
@@ -52,7 +52,7 @@ export function Hero() {
           >
             Kenya
           </p>
-          <Image src={site.heroForeground} alt="" fill priority sizes="230vw" className="object-fill" />
+          <div aria-hidden className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-[#140c07] from-10% to-transparent" />
         </div>
       </div>
 

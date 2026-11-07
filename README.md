@@ -20,7 +20,6 @@ Copy `.env.example` to `.env.local`.
 | Variable | Purpose |
 | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | Canonical URL for metadata, sitemap and OG tags. |
-| `NEXT_PUBLIC_IMAGE_PLACEHOLDERS` | Set to `1` to use the local SVG placeholders in `public/placeholders/` instead of Unsplash photos (handy offline or in CI). |
 
 ## Where things live
 
@@ -39,8 +38,9 @@ Every page is generated from `/data` and `/content`, so moving to a CMS means sw
 ## Before launch: placeholders to replace
 
 - **`config/site.ts`**: stats (years, partner camps, parks). The email (`safarinjema@tourground.com`) and business address (Spaces, Eaton Place, Gigiri, Nairobi) are set; confirm the coworking arrangement before launch.
-- **Photos**: every image is an Unsplash placeholder in `data/images.ts`. The photo IDs were not checked, so swap any that fail to load, and ideally use your own photography.
+- **Photos**: every image is a real photograph registered in `data/images.ts`: Unsplash photos by id, and Wikimedia Commons photos downloaded into `public/photos` (author and licence in `public/photos/CREDITS.md`). Replace them with your own photography when you have it.
 - **Logo**: a text and SVG placeholder in `components/layout/Logo.tsx`.
+- **Conservation page**: name the partner organisations and add real figures (`app/(en)/conservation/page.tsx`).
 - **Stays**: fictional sample properties (`data/stays.ts`). When real partner camps replace them, use images the venue allows (see `IMAGES-NEEDED.md`).
 - **FAQ facts** (eTA, KWS cashless payments, health, tipping guidance): review them with your team.
 - **Legal pages** (`/privacy`, `/terms`, `/cookies`) are complete drafts; have a lawyer review them before launch.
