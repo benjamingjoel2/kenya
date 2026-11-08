@@ -1,46 +1,46 @@
 # Images needed
 
-## Wrong photos replaced by illustrations
+## Illustrations replaced with real photos (November 2026)
 
-An audit (October 2026) found that many stock photos in `data/images.ts` did not show what their caption said, for example a husky for "Cape buffalo", radishes for the Laikipia plateau, Cape Town for Hell’s Gate, Mount Everest for Meru, the Maldives for Diani Beach and Canada’s Moraine Lake for a tented camp. Those slots now show the site's own illustrated artwork (flagged as a placeholder in the image registry) until a correct photo is sourced. Searching for and checking replacement photos was not possible from the build environment, so each one is listed here.
+Every slot that showed the site's drawn tone artwork now shows a real photograph. The drawn fallback is gone: `NEXT_PUBLIC_IMAGE_PLACEHOLDERS`, `public/placeholders/`, `scripts/make-placeholders.mjs` and the hero's drawn ridge cut-out (`public/hero/foreground.svg`) have been removed; the hero photo now fades into the dark ground with a CSS gradient. Commons photos are downloaded into `public/photos` (author and licence in `public/photos/CREDITS.md`); Unsplash photos are referenced by id. Where no photo of the exact subject was found, the nearest true subject is used and the alt text says what the photo shows.
 
-| Image key | Should show | Used in | What to source |
-| --- | --- | --- | --- |
-| `mara-plains` | the Masai Mara plains | registry only (not currently shown) | A location-verified photo of the Masai Mara plains (its Unsplash page location matches, or Creative Commons with credit) |
-| `migration-crossing` | wildebeest crossing the Mara River | `data/destinations.ts` `data/experiences.ts` `data/routes.ts` `data/safaris.ts` `content/blog/when-to-see-the-great-migration.mdx` | A location-verified photo of wildebeest crossing the Mara River (its Unsplash page location matches, or Creative Commons with credit) |
-| `wildebeest-herd` | a column of wildebeest on the savanna | registry only (not currently shown) | A location-verified photo of a column of wildebeest on the savanna (its Unsplash page location matches, or Creative Commons with credit) |
-| `balloon-sunrise` | a hot-air balloon over the plains at sunrise | `app/experiences/page.tsx` `app/plan-your-safari/page.tsx` `components/home/HomeSections.tsx` `data/destinations.ts` `data/experiences.ts` | A location-verified photo of a hot-air balloon over the plains at sunrise (its Unsplash page location matches, or Creative Commons with credit) |
-| `cheetah` | a cheetah on a termite mound | registry only (not currently shown) | A location-verified photo of a cheetah on a termite mound (its Unsplash page location matches, or Creative Commons with credit) |
-| `reticulated-giraffe` | a reticulated giraffe in Samburu | `data/destinations.ts` `data/stays.ts` `data/routes.ts` `data/safaris.ts` | A location-verified photo of a reticulated giraffe in Samburu (its Unsplash page location matches, or Creative Commons with credit) |
-| `buffalo` | a Cape buffalo | `data/destinations.ts` | A location-verified photo of a Cape buffalo (its Unsplash page location matches, or Creative Commons with credit) |
-| `walking-safari` | a guided walking safari | `data/destinations.ts` `data/experiences.ts` | A location-verified photo of a guided walking safari (its Unsplash page location matches, or Creative Commons with credit) |
-| `horseback` | a horseback safari | `data/destinations.ts` `data/experiences.ts` `data/stays.ts` | A location-verified photo of a horseback safari (its Unsplash page location matches, or Creative Commons with credit) |
-| `maasai-culture` | Maasai elders in red shuka cloth | `app/about/page.tsx` `components/home/HomeSections.tsx` `data/destinations.ts` `data/experiences.ts` | A location-verified photo of Maasai elders in red shuka cloth (its Unsplash page location matches, or Creative Commons with credit) |
-| `samburu-landscape` | the Samburu landscape | `data/destinations.ts` `data/stays.ts` | A location-verified photo of the Samburu landscape (its Unsplash page location matches, or Creative Commons with credit) |
-| `laikipia-plateau` | the Laikipia plateau with Mount Kenya | `data/destinations.ts` `data/stays.ts` `data/routes.ts` `data/safaris.ts` | A location-verified photo of the Laikipia plateau with Mount Kenya (its Unsplash page location matches, or Creative Commons with credit) |
-| `mount-kenya` | the peaks of Mount Kenya | `components/home/HomeSections.tsx` `components/home/KenyaDotMap.tsx` `data/destinations.ts` `data/experiences.ts` | A location-verified photo of the peaks of Mount Kenya (its Unsplash page location matches, or Creative Commons with credit) |
-| `tsavo-red-earth` | red-dusted elephants in Tsavo | `data/destinations.ts` | A location-verified photo of red-dusted elephants in Tsavo (its Unsplash page location matches, or Creative Commons with credit) |
-| `lake-naivasha` | Lake Naivasha | `data/destinations.ts` | A location-verified photo of Lake Naivasha (its Unsplash page location matches, or Creative Commons with credit) |
-| `hells-gate` | the cliffs of Hell’s Gate | `data/destinations.ts` | A location-verified photo of the cliffs of Hell’s Gate (its Unsplash page location matches, or Creative Commons with credit) |
-| `nairobi-skyline` | Nairobi National Park with the city skyline | `data/destinations.ts` | A location-verified photo of Nairobi National Park with the city skyline (its Unsplash page location matches, or Creative Commons with credit) |
-| `meru-river` | a river in Meru National Park | `data/destinations.ts` | A location-verified photo of a river in Meru National Park (its Unsplash page location matches, or Creative Commons with credit) |
-| `lewa-landscape` | the Lewa grasslands | `data/destinations.ts` `data/stays.ts` | A location-verified photo of the Lewa grasslands (its Unsplash page location matches, or Creative Commons with credit) |
-| `diani-beach` | Diani Beach | `components/home/KenyaDotMap.tsx` `data/destinations.ts` `data/experiences.ts` `data/stays.ts` `data/routes.ts` `data/safaris.ts` `content/blog/planning-a-bush-and-beach-trip.mdx` | A location-verified photo of Diani Beach (its Unsplash page location matches, or Creative Commons with credit) |
-| `lamu-dhow` | a dhow off Lamu | `app/contact/page.tsx` `components/home/HomeSections.tsx` `data/destinations.ts` `data/experiences.ts` `data/stays.ts` | A location-verified photo of a dhow off Lamu (its Unsplash page location matches, or Creative Commons with credit) |
-| `lamu-town` | a carved doorway in Lamu Old Town | `data/destinations.ts` `data/stays.ts` | A location-verified photo of a carved doorway in Lamu Old Town (its Unsplash page location matches, or Creative Commons with credit) |
-| `watamu-coast` | the Watamu coast | `data/destinations.ts` `data/stays.ts` | A location-verified photo of the Watamu coast (its Unsplash page location matches, or Creative Commons with credit) |
-| `beach-villa` | a beach villa on the Kenyan coast | `app/stays/page.tsx` `data/destinations.ts` `data/stays.ts` `data/types.ts` | A location-verified photo of a beach villa on the Kenyan coast (its Unsplash page location matches, or Creative Commons with credit) |
-| `tented-camp` | a tented safari camp | `app/stays/page.tsx` `data/stays.ts` `data/types.ts` | A location-verified photo of a tented safari camp (its Unsplash page location matches, or Creative Commons with credit) |
-| `tent-interior` | the interior of a safari tent | `data/stays.ts` | A location-verified photo of the interior of a safari tent (its Unsplash page location matches, or Creative Commons with credit) |
-| `bush-dinner` | a dinner set up in the bush | `data/stays.ts` | A location-verified photo of a dinner set up in the bush (its Unsplash page location matches, or Creative Commons with credit) |
-| `sundowner` | sundowner drinks on safari | `app/about/page.tsx` `data/destinations.ts` `data/stays.ts` | A location-verified photo of sundowner drinks on safari (its Unsplash page location matches, or Creative Commons with credit) |
-| `gorilla` | a mountain gorilla | `data/experiences.ts` `data/routes.ts` `data/safaris.ts` | A location-verified photo of a mountain gorilla (its Unsplash page location matches, or Creative Commons with credit) |
-| `family-safari` | a family on safari | `data/experiences.ts` `data/safaris.ts` | A location-verified photo of a family on safari (its Unsplash page location matches, or Creative Commons with credit) |
-| `honeymoon` | a honeymoon deck at sunset | `data/destinations.ts` `data/experiences.ts` `data/safaris.ts` | A location-verified photo of a honeymoon deck at sunset (its Unsplash page location matches, or Creative Commons with credit) |
-| `photographer` | a photographer on safari | `data/experiences.ts` | A location-verified photo of a photographer on safari (its Unsplash page location matches, or Creative Commons with credit) |
-| `specialist` | a safari specialist | registry only (not currently shown) | A location-verified photo of a safari specialist (its Unsplash page location matches, or Creative Commons with credit) |
-| `conservation` | a ranger on patrol | `app/conservation/page.tsx` `data/destinations.ts` `data/experiences.ts` | A location-verified photo of a ranger on patrol (its Unsplash page location matches, or Creative Commons with credit) |
-| `binoculars` | binoculars on a safari map | `app/blog/page.tsx` `data/routes.ts` | A location-verified photo of binoculars on a safari map (its Unsplash page location matches, or Creative Commons with credit) |
+| Done | Image key | Was meant to show | Photo now used | Nearest-match note |
+| --- | --- | --- | --- | --- |
+| [x] | `mara-plains` | the Masai Mara plains | Commons `masai-mara-plains.jpg` |  |
+| [x] | `migration-crossing` | wildebeest crossing the Mara River | Commons `mara-river-crossing.jpg` |  |
+| [x] | `wildebeest-herd` | a column of wildebeest on the savanna | Commons `mara-wildebeest-herd.jpg` |  |
+| [x] | `balloon-sunrise` | a hot-air balloon over the plains at sunrise | Commons `mara-balloon-dawn.jpg` | Sunrise in the Mara on a balloon morning; balloon not prominent |
+| [x] | `cheetah` | a cheetah on a termite mound | Commons `mara-cheetah.jpg` | Cheetah in the Mara grass, not on a termite mound |
+| [x] | `reticulated-giraffe` | a reticulated giraffe in Samburu | Commons `samburu-reticulated-giraffe.jpg` |  |
+| [x] | `buffalo` | a Cape buffalo | Commons `nakuru-buffalo.jpg` | Lake Nakuru |
+| [x] | `walking-safari` | a guided walking safari | Commons `ol-kinyei-walking-safari.jpg` |  |
+| [x] | `horseback` | a horseback safari | Commons `kenya-horseback-safari.jpg` |  |
+| [x] | `maasai-culture` | Maasai elders in red shuka cloth | Commons `amboseli-maasai.jpg` | Maasai at Amboseli, men and women |
+| [x] | `samburu-landscape` | the Samburu landscape | Commons `samburu-landscape.jpg` |  |
+| [x] | `laikipia-plateau` | the Laikipia plateau with Mount Kenya | Commons `ol-pejeta-impala.jpg` | Impala at Ol Pejeta (Laikipia); Mount Kenya not in frame |
+| [x] | `mount-kenya` | the peaks of Mount Kenya | Commons `mount-kenya-batian-nelion.jpg` |  |
+| [x] | `tsavo-red-earth` | red-dusted elephants in Tsavo | Commons `tsavo-red-elephant.jpg` |  |
+| [x] | `lake-naivasha` | Lake Naivasha | Commons `lake-naivasha.jpg` |  |
+| [x] | `hells-gate` | the cliffs of Hell’s Gate | Commons `hells-gate-cliffs.jpg` |  |
+| [x] | `nairobi-skyline` | Nairobi National Park with the city skyline | Commons `nairobi-park-skyline.jpg` |  |
+| [x] | `meru-river` | a river in Meru National Park | Commons `meru-river-pool.jpg` |  |
+| [x] | `lewa-landscape` | the Lewa grasslands | Unsplash `photo-1535680671320-c566e5ecddf7` |  |
+| [x] | `diani-beach` | Diani Beach | Unsplash `photo-1651860282131-e3257674ccd1` |  |
+| [x] | `lamu-dhow` | a dhow off Lamu | Unsplash `photo-1711802536786-149a0d0c5879` |  |
+| [x] | `lamu-town` | a carved doorway in Lamu Old Town | Unsplash `photo-1711802536772-0ef59886bc1b` | Lamu Town waterfront, not a carved doorway |
+| [x] | `watamu-coast` | the Watamu coast | Unsplash `photo-1667935837291-1dc178866251` | Kenya south-coast water (Unsplash: "The beautiful south coast of Kenya"); no verified Watamu photo found |
+| [x] | `beach-villa` | a beach villa on the Kenyan coast | Unsplash `photo-1708119063168-4785d1359824` |  |
+| [x] | `tented-camp` | a tented safari camp | Unsplash `photo-1709420838688-ccd0517d6a2d` |  |
+| [x] | `tent-interior` | the interior of a safari tent | Unsplash `photo-1709521681958-e5337c2478f2` | Pool at a Naboisho camp; no verified Kenyan tent-interior photo found |
+| [x] | `bush-dinner` | a dinner set up in the bush | Unsplash `photo-1535758180808-99b1752d8522` | An elephant at a dinner table in a Mara camp |
+| [x] | `sundowner` | sundowner drinks on safari | Unsplash `photo-1599921777960-ac7c40d1bc60` | An acacia at sunset in the Mara |
+| [x] | `gorilla` | a mountain gorilla | Unsplash `photo-1711198587711-2020c1e4a3a3` | Bwindi, Uganda (the gorilla extension) |
+| [x] | `family-safari` | a family on safari | Unsplash `photo-1709567484031-87bc70607500` | A family walking with guides (location not stated on Unsplash) |
+| [x] | `honeymoon` | a honeymoon deck at sunset | Commons `meru-lodge-terrace.jpg` | A lodge terrace over Meru National Park |
+| [x] | `photographer` | a photographer on safari | Unsplash `photo-1535082623926-b39352a03fb7` | A safari vehicle among wildebeest in the Mara |
+| [x] | `specialist` | a safari specialist | Unsplash `photo-1499591934245-40b55745b905` | A route planned on a paper map |
+| [x] | `conservation` | a ranger on patrol | Commons `ol-pejeta-rhinos.jpg` | White rhinos at Ol Pejeta Conservancy, not a ranger |
+| [x] | `binoculars` | binoculars on a safari map | Unsplash `photo-1452421822248-d4c2b47f0c81` | A trip-planning flat lay (notebook, camera, lens) |
 
 ## Photos kept, still to verify
 

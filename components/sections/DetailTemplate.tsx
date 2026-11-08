@@ -49,7 +49,7 @@ export function DetailTemplate({
       </section>
 
       <section className="pt-14 pb-20 md:pb-28">
-        <div className="container-x grid gap-12 lg:grid-cols-12">
+        <div className="container-x grid grid-cols-1 gap-12 lg:grid-cols-12">
           <div className="flex flex-col lg:col-span-8">
             {sections.map((s, i) => (
               <section key={s.id} id={s.id} className={cn("scroll-mt-28", i > 0 && "mt-12 border-t border-line pt-12")}>

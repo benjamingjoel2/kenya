@@ -70,7 +70,6 @@ export default function ConservationPage() {
               rhino-monitoring team, or packing something genuinely useful for a school. We can point you to reputable
               organisations, and we never arrange visits that treat people or animals as a spectacle.
             </p>
-            <p className="text-base text-stone">Partner organisations and figures to be added (placeholder).</p>
           </Reveal>
         </div>
       </section>

@@ -1,5 +1,4 @@
-/** `placeholder`: branded illustration standing in for a photo still to be sourced. */
-export type Img = { src: string; alt: string; placeholder?: boolean };
+export type Img = { src: string; alt: string };
 
 export type RegionId = "mara" | "amboseli" | "samburu" | "laikipia" | "tsavo" | "rift-valley" | "central" | "nairobi" | "coast";
 
