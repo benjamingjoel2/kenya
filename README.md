@@ -38,7 +38,7 @@ Every page is generated from `/data` and `/content`, so moving to a CMS means sw
 ## Before launch: placeholders to replace
 
 - **`config/site.ts`**: stats (years, partner camps, parks). The email (`safarinjema@tourground.com`) and business address (Spaces, Eaton Place, Gigiri, Nairobi) are set; confirm the coworking arrangement before launch.
-- **Photos**: every image is a real photograph registered in `data/images.ts`: Unsplash photos by id, and Wikimedia Commons photos downloaded into `public/photos` (author and licence in `public/photos/CREDITS.md`). Replace them with your own photography when you have it.
+- **Photos**: every image is a real photograph registered in `data/images.ts`: Unsplash photos by id, and Wikimedia Commons photos downloaded into `public/photos` (author and licence in `public/photos/CREDITS.md`, mirrored in `data/photoCredits.ts` and shown on `/photo-credits`, linked from the footer; credits are never shown on the photos). Replace them with your own photography when you have it.
 - **Logo**: a text and SVG placeholder in `components/layout/Logo.tsx`.
 - **Conservation page**: name the partner organisations and add real figures (`app/(en)/conservation/page.tsx`).
 - **Stays**: fictional sample properties (`data/stays.ts`). When real partner camps replace them, use images the venue allows (see `IMAGES-NEEDED.md`).
