@@ -10,7 +10,7 @@ import { LOCALES, localePath, languageAlternates } from "@/lib/i18n-paths";
 export default function sitemap(): MetadataRoute.Sitemap {
   const built = new Date();
   const u = (p: string) => new URL(p, site.url).toString();
-  const statics = ["/", "/destinations", "/safaris", "/experiences", "/stays", "/about", "/conservation", "/faq", "/contact", "/plan-your-safari", "/blog", "/privacy", "/terms", "/cookies"];
+  const statics = ["/", "/destinations", "/safaris", "/experiences", "/stays", "/about", "/conservation", "/faq", "/contact", "/plan-your-safari", "/blog", "/privacy", "/terms", "/cookies", "/photo-credits"];
   const entries = [
     ...statics.map((p) => ({ url: u(p), lastModified: built, changeFrequency: "monthly" as const, priority: p === "/" ? 1 : 0.7 })),
     ...destinations.map((d) => ({ url: u(`/destinations/${d.slug}`), lastModified: built, priority: 0.8 })),
